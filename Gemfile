@@ -4,13 +4,13 @@ ruby '2.2.3'
 
 gem 'rails',           '4.2.4'
 gem 'bootstrap-sass',  '3.3.5'
+gem 'bootstrap_form',  '2.3.0' # bootstrap-ruby/rails-bootstrap-forms
 gem 'sass-rails',      '5.0.4'
 gem 'jquery-rails',    '4.0.5'
 gem 'turbolinks',      '2.5.3'
 gem 'coffee-rails',    '4.1.0'
 gem 'haml-rails',      '0.9.0'
 gem 'uglifier',        '2.7.2'
-gem 'bootstrap_form',  '2.3.0' # bootstrap-ruby/rails-bootstrap-forms
 gem 'bcrypt',          '3.1.6'
 gem 'pg',              '0.18.2'
 gem 'puma',            '2.13.4'
