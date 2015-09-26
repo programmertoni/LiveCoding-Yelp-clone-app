@@ -15,4 +15,5 @@ It would be awesome if you could contribute to make this app better.
 
 ## License
 
-Trello is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+Trello is released under the 
+[MIT License](http://www.opensource.org/licenses/MIT).
