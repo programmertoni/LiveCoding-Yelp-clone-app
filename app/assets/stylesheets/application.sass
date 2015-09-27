@@ -49,6 +49,7 @@ $link-hover-decoration: none
 @import "bootstrap-sprockets"
 @import "bootstrap"
 @import font-awesome
+@import 'stars'
 
 body
   background: -webkit-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* Chrome 10+, Saf5.1+ */
@@ -90,107 +91,13 @@ main a
     color: #fff
 
 p
-  color: #333
+  color: lighten(#333, 8%)
 
 .review
-  margin: 50px
+  margin: 20px
+  p
+    text-align: justify
 
-// styles for stars
-$starColour: #16a085
-$starHoverColour: #1abc9c
+hr
+  border-color: lighten($pink, 30%)
 
-.star-rating  
-  font-family: 'FontAwesome'
-  margin: 50px auto
-  > fieldset 
-    border: none
-    display: inline-block
-    &:not(:checked) 
-      > input 
-        position: absolute
-        top: -9999px
-        clip: rect(0,0,0,0)
-      > label 
-        float: right
-        width: 1em
-        padding: 0 .05em
-        overflow: hidden
-        white-space: nowrap
-        cursor: pointer
-        font-size: 200%
-        color: $starColour
-        &:before 
-          content: '\f006  '
-        &:hover,
-        &:hover ~ label 
-          color: $starHoverColour
-          text-shadow: 0 0 3px $starHoverColour
-          &:before 
-            content: '\f005  '
-    > input:checked 
-      & ~ label 
-        &:before 
-          content: '\f005  '
-    > label:active
-      position: relative
-      top: 2px
-
-// Stars SCSS
-// $starColour: #16a085;
-// $starHoverColour: #1abc9c;
-//
-// .star-rating { 
-//   font-family: 'FontAwesome'; 
-//   margin: 50px auto;
-//   
-//   > fieldset {
-//     border: none;
-//     display: inline-block;
-//     
-//     &:not(:checked) {
-//       > input {
-//         position: absolute;
-//         top: -9999px;
-//         clip: rect(0,0,0,0);
-//       }
-//
-//       > label {
-//         float: right;
-//         width: 1em;
-//         padding: 0 .05em;
-//         overflow: hidden;
-//         white-space: nowrap;
-//         cursor: pointer;
-//         font-size: 200%;
-//         color: $starColour;
-//         
-//         &:before {
-//           content: '\f006  ';
-//         }
-//         
-//         &:hover,
-//         &:hover ~ label {
-//           color: $starHoverColour;
-//           text-shadow: 0 0 3px $starHoverColour;
-//           &:before {
-//             content: '1  ';
-//           }
-//         }
-//       }
-//     }
-//     
-//     > input:checked {
-//       & ~ label {
-//         &:before {
-//           content: '\f005  ';
-//         }
-//       }    
-//     }    
-//
-//     > label:active {
-//       position: relative;
-//       top: 2px;
-//     }
-//   }
-// }
-//
