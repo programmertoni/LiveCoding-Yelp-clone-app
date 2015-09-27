@@ -1,96 +1,31 @@
-.container
+%h1.text-center Recent reviews
+.review
   .row
-    .col-md-2.text-center
-      %h1 Yelp
-      %p clone app
-    .col-md-7.col-md-offset-1
-      %form.form-inline
-        .form-group
-          %input(type='text' class='form-control' size=35
-                 placeholder='find the business...')
-          %select.form-control
-            %option all citys
-            %option Ljubljana
-            %option Berlin
-            %option Paris
-            %option New york
-            %option Los Angeles
-          %select.form-control
-            %option all categoris
-            %option Restrurants
-            %option Travel
-            %option Spa
-            %option Hotels
-            %option Health
-          %button(type='submit' class='btn btn-default')
-            Search
-    .col-md-2
-      %span.dropdown.pull-right
-        %a(class="dropdown-toggle btn btn-primary" data-toggle="dropdown"
-          href="#" role="button" aria-haspopup="true" aria-expanded="false")
-          Toni C.
-          %span.caret
-        %ul.dropdown-menu
-          %li
-            %a 
-              %span.glyphicon.glyphicon-user 
-                %span 3
-              %span.glyphicon.glyphicon-star
-                %span 12
-          %li
-            %a(href='#') About Me
-          %li
-            %a(href='#') Account Settings
-          %li(role='separator' class='divider')
-          %li
-            %a(href='#') Log Out
-    .col-md-8.col-md-offset-2
-      .nav.nav-pills.main-navigation
-        %li(role='presentation' class='active')
-          %a(href='#') Home
-        %li(role='presentation')
-          %a(href='#') About me
-        %li(role='presentation')
-          %a(href='#') Write a review
-        %li(role='presentation')
-          %a(href='#') Find friends
-        %li(role='presentation')
-          %a(href='#') Messages
-        %li(role='presentation')
-          %a(href='#') Help
+    %a(href='#') Toni. C
+    wrote a review for
+    %a(href='#') Kasca Mrlacnik
+    %span.pull-right= fa_icon 'clock-o', text: '1 minute ago'
+  .row
+    .star-rating
+      %fieldset
+        %input#star5{:name => "rating", :type => "radio", :value => "5"}/
+        %label{:for => "star5", :title => "Outstanding"} 5 stars
+        %input#star4{:name => "rating", :type => "radio", :value => "4"}/
+        %label{:for => "star4", :title => "Very Good"} 4 stars
+        %input#star3{:name => "rating", :type => "radio", :value => "3"}/
+        %label{:for => "star3", :title => "Good"} 3 stars
+        %input#star2{:name => "rating", :type => "radio", :value => "2"}/
+        %label{:for => "star2", :title => "Poor"} 2 stars
+        %input#star1{:name => "rating", :type => "radio", :value => "1"}/
+        %label{:for => "star1", :title => "Very Poor"} 1 star
 
-
-
--# <ul class="nav nav-pills">
--#   <li role="presentation" class="active"><a href="#">Home</a></li>
--#   <li role="presentation"><a href="#">Profile</a></li>
--#   <li role="presentation"><a href="#">Messages</a></li>
--# </ul>
-
-
-
--# <select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
--# </select>
 -#
--# <form class="form-inline">
--#   <div class="form-group">
--#     <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
--#     <div class="input-group">
--#       <div class="input-group-addon">$</div>
--#       <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
--#       <div class="input-group-addon">.00</div>
--#     </div>
--#   </div>
--#   <button type="submit" class="btn btn-primary">Transfer cash</button>
--# </form>
--#
--#
--#
--#
--#
--#
+-# <div class="star-rating">
+-#   <fieldset>
+-#     <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Outstanding">5 stars</label>
+-#     <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Very Good">4 stars</label>
+-#     <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Good">3 stars</label>
+-#     <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Poor">2 stars</label>
+-#     <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very Poor">1 star</label>
+-#   </fieldset>
+-# </div>

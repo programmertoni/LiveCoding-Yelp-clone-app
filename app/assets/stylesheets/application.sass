@@ -9,27 +9,188 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
+ *= require font-awesome
  */
+
+$light_green:  #DDEFBB
+$light_pink:   #FFEEEE
+
+$pink: #B25F5F
+$green: desaturate(#53CA53, 16%)
+
+/////////////////////////
+// Bootstrap variables//
+///////////////////////
+
+$font-size-base: 18px
+$line-height-base: 1.6
+
+// buttons
+$btn-default-color: lighten($green, 15%)
+$btn-default-bg: rgba(#fff, 0.1)
+
+// forms
+$input-border: lighten($pink, 35%)
+$input-bg: rgba(#fff, 0.0)
+$input-color: lighten($green, 15%)
+$input-border-focus: lighten($green, 20%)
+$input-color-placeholder: lighten($green, 15%)
+$btn-default-border: lighten($pink, 35%)
+
+// dropdowns
+$dropdown-bg: rgba(#fff, 0.6)
+$nav-link-hover-bg: rgba($green, 0.5)
+
+$gray-base: saturate($pink, 20%)
+$brand-primary: lighten($pink, 10%)
+
+$link-hover-decoration: none
+
 @import "bootstrap-sprockets"
 @import "bootstrap"
+@import font-awesome
 
-$lighest_green:  #7FD7A2
-$light_green:    #3CCF76
-$green:          #2D9C59
-$dark_green:     #174F2D
-$darkest_green:  #2F4F3C
+body
+  background: -webkit-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* IE10 */
+  background:      -o-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* W3C */
 
-$light-gray: #ccc
+::selection
+  background-color: $pink
+  color: #fff
+
+::-moz-selection
+  background-color: $pink
+  color: #fff
+
+main a
+  color: $green
+
 
 .dropdown-menu .glyphicon
   padding-right: 30px
 
 .container
-  margin-top: 10px
-  background-color: $light-gray
+  margin-top:        10px
+  padding:           10px
+  background-color:  rgba(white, 0.4)
+  border-radius:     10px
 
 .search-form
   width: 500px
 
 .main-navigation
   margin-top: 10px
+
+.main-navigation
+  margin-top: 26px
+  a:hover
+    color: #fff
+
+p
+  color: #333
+
+.review
+  margin: 50px
+
+// styles for stars
+$starColour: #16a085
+$starHoverColour: #1abc9c
+
+.star-rating  
+  font-family: 'FontAwesome'
+  margin: 50px auto
+  > fieldset 
+    border: none
+    display: inline-block
+    &:not(:checked) 
+      > input 
+        position: absolute
+        top: -9999px
+        clip: rect(0,0,0,0)
+      > label 
+        float: right
+        width: 1em
+        padding: 0 .05em
+        overflow: hidden
+        white-space: nowrap
+        cursor: pointer
+        font-size: 200%
+        color: $starColour
+        &:before 
+          content: '\f006  '
+        &:hover,
+        &:hover ~ label 
+          color: $starHoverColour
+          text-shadow: 0 0 3px $starHoverColour
+          &:before 
+            content: '\f005  '
+    > input:checked 
+      & ~ label 
+        &:before 
+          content: '\f005  '
+    > label:active
+      position: relative
+      top: 2px
+
+// Stars SCSS
+// $starColour: #16a085;
+// $starHoverColour: #1abc9c;
+//
+// .star-rating { 
+//   font-family: 'FontAwesome'; 
+//   margin: 50px auto;
+//   
+//   > fieldset {
+//     border: none;
+//     display: inline-block;
+//     
+//     &:not(:checked) {
+//       > input {
+//         position: absolute;
+//         top: -9999px;
+//         clip: rect(0,0,0,0);
+//       }
+//
+//       > label {
+//         float: right;
+//         width: 1em;
+//         padding: 0 .05em;
+//         overflow: hidden;
+//         white-space: nowrap;
+//         cursor: pointer;
+//         font-size: 200%;
+//         color: $starColour;
+//         
+//         &:before {
+//           content: '\f006  ';
+//         }
+//         
+//         &:hover,
+//         &:hover ~ label {
+//           color: $starHoverColour;
+//           text-shadow: 0 0 3px $starHoverColour;
+//           &:before {
+//             content: '1  ';
+//           }
+//         }
+//       }
+//     }
+//     
+//     > input:checked {
+//       & ~ label {
+//         &:before {
+//           content: '\f005  ';
+//         }
+//       }    
+//     }    
+//
+//     > label:active {
+//       position: relative;
+//       top: 2px;
+//     }
+//   }
+// }
+//
