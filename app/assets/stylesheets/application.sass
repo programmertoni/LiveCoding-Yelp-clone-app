@@ -12,9 +12,10 @@
  *= require font-awesome
  */
 
-$brown: #661505
-$green: #056640
-$light_brown:       #B22104
+$brown:        #661505
+$green:        #056640
+$light_brown:  #B22104
+$orange:       #FF8812
 
 /////////////////////////
 // Bootstrap variables//
@@ -151,7 +152,8 @@ footer .container
     font-size: 150%
 
 .more-reviews-button
-  margin-top: 70px
+  margin-top:     70px
+  margin-bottom:  40px
 
 .welcome-text
   width: 900px
@@ -185,3 +187,20 @@ a:hover
 
 .company-name
   font-size: 2em
+
+.company-stars
+  margin-left: -12px
+
+.company-reviews
+  font-size: 0.8em
+
+.eur-all
+  margin-left: -12px
+  font-size: 1.4em
+
+.eur-full
+  color: $orange
+
+.eur-empty
+  color: lighten(desaturate($orange, 30%), 20%)
+
