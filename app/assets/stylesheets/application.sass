@@ -12,11 +12,9 @@
  *= require font-awesome
  */
 
-$light_green:  #DDEFBB
-$light_pink:   #FFEEEE
-
-$pink: #B25F5F
-$green: desaturate(#53CA53, 16%)
+$brown: #661505
+$green: #056640
+$light_brown:       #B22104
 
 /////////////////////////
 // Bootstrap variables//
@@ -25,24 +23,30 @@ $green: desaturate(#53CA53, 16%)
 $font-size-base: 18px
 $line-height-base: 1.6
 
+// fonts
+$font-family-sans-serif: 'Open Sans', 'Helvetica Neue', Helvetica
+$headings-font-family: 'Bevan'
+
 // buttons
-$btn-default-color: lighten($green, 15%)
-$btn-default-bg: rgba(#fff, 0.1)
+$btn-default-color: lighten($brown, 15%)
+$btn-default-bg: rgba(#fff, 0.0)
+$btn-info-bg: $light_brown
 
 // forms
-$input-border: lighten($pink, 35%)
+$input-border: $brown
 $input-bg: rgba(#fff, 0.0)
-$input-color: lighten($green, 15%)
-$input-border-focus: lighten($green, 20%)
-$input-color-placeholder: lighten($green, 15%)
-$btn-default-border: lighten($pink, 35%)
+$input-color: $brown
+$input-border-focus: $brown
+$input-color-placeholder: $brown
+$btn-default-border: $brown
 
 // dropdowns
-$dropdown-bg: rgba(#fff, 0.6)
-$nav-link-hover-bg: rgba($green, 0.5)
+$dropdown-bg: #fff
+$nav-link-hover-bg: rgba($green, 0.8)
 
-$gray-base: saturate($pink, 20%)
-$brand-primary: lighten($pink, 10%)
+$gray-base: $brown
+$gray-dark: $brown
+$brand-primary: $brown
 
 $link-hover-decoration: none
 
@@ -52,18 +56,19 @@ $link-hover-decoration: none
 @import 'stars'
 
 body
-  background: -webkit-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* Chrome 10+, Saf5.1+ */
-  background:    -moz-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* FF3.6+ */
-  background:     -ms-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* IE10 */
-  background:      -o-linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* Opera 11.10+ */
-  background:         linear-gradient(90deg, #FFEEEE 10%, #DDEFBB 90%) /* W3C */
+
+  background: -webkit-linear-gradient(90deg, #FF512F 10%, #F09819 90%) /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #FF512F 10%, #F09819 90%) /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #FF512F 10%, #F09819 90%) /* IE10 */
+  background:      -o-linear-gradient(90deg, #FF512F 10%, #F09819 90%) /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #FF512F 10%, #F09819 90%) /* W3C */
 
 ::selection
-  background-color: $pink
+  background-color: $brown
   color: #fff
 
 ::-moz-selection
-  background-color: $pink
+  background-color: $brown
   color: #fff
 
 main a
@@ -76,7 +81,7 @@ main a
 .container
   margin-top:        10px
   padding:           10px
-  background-color:  rgba(white, 0.4)
+  background-color:  rgba(white, 0.8)
   border-radius:     10px
 
 .search-form
@@ -84,6 +89,8 @@ main a
 
 .main-navigation
   margin-top: 10px
+  a:focus
+    color: #fff
 
 .main-navigation
   margin-top: 26px
@@ -91,7 +98,7 @@ main a
     color: #fff
 
 p
-  color: lighten(#333, 8%)
+  color: #333
 
 .review
   margin: 20px
@@ -99,5 +106,36 @@ p
     text-align: justify
 
 hr
-  border-color: lighten($pink, 30%)
+  border-color: $brown
 
+.light_brown
+  color: darken($light_brown, 7%)
+  padding-top: 12px
+
+.useful-funny-cool-btn
+  width: 110px
+
+.bevan
+  font-family: 'Bevan'
+
+.large-heading
+  font-size: 3.5em
+
+// navigation
+.navigation-container
+  position: relative
+
+.logo
+  position: absolute
+  top: 10px
+  left: 30px
+
+.logo-subheading
+  position: relative
+  top: -20px
+
+.time-ago
+  color: $light_brown
+
+.search-button, .search-button:hover
+  color: $brown

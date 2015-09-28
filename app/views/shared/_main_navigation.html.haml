@@ -1,13 +1,13 @@
-.container
+.container.navigation-container
   .row
-    .col-md-2.text-center
+    .text-center.logo
       %h1 Yelp
-      %h4 clone app
-    .col-md-7.col-md-offset-1
+      .logo-subheading.bevan clone app
+    .col-md-9.col-md-offset-2
       %form.form-inline
         .form-group
           %input(type='text' class='form-control'
-                 placeholder='find the business...')
+                 placeholder='find business...')
           %select.form-control
             %option all citys
             %option Ljubljana
@@ -16,15 +16,15 @@
             %option New york
             %option Los Angeles
           %select.form-control
-            %option all categoris
+            %option all categories
             %option Restrurants
             %option Travel
             %option Spa
             %option Hotels
             %option Health
-          %button(type='submit' class='btn btn-default')
+          %button(type='submit' class='btn btn-default search-button')
             Search
-    .col-md-2
+    .col-md-1
       %span.dropdown.pull-right
         %a(class="dropdown-toggle btn btn-primary" data-toggle="dropdown"
           href="#" role="button" aria-haspopup="true" aria-expanded="false")
@@ -44,7 +44,7 @@
           %li(role='separator' class='divider')
           %li
             %a(href='#') Log Out
-    .col-md-8.col-md-offset-1
+    .col-md-8.col-md-offset-2
       .nav.nav-pills.main-navigation
         %li(role='presentation' class='active')
           %a(href='#') Home
