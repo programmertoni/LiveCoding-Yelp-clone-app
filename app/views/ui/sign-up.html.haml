@@ -1,0 +1,25 @@
+%h1.text-center.large-heading Sign Up
+
+.form-sign-up-log-in
+  %form.form-horizontal
+    .form-group
+      %label(for='full_name' class='col-sm-4 control-label') Full Name
+      .col-sm-7
+        %input(type='text' class='form-control' id='full_name' placeholder='Write your full name...' autofocus)
+    .form-group
+      %label(for='password' class='col-sm-4 control-label') Password
+      .col-sm-7
+        %input(type='password' class='form-control' id='password' placeholder='Your password goes here...' autofocus)
+    .form-group
+      %label(for='full_name' class='col-sm-4 control-label')
+        Create account for
+      .col-sm-7
+        %label(class='checkbox-inline')
+          %input(type='radio' name='box-1' value='user' checked)
+          User
+        %label(class='checkbox-inline')
+          %input(type='radio' name='box-1' value='owner')
+          Business Owner
+    .form-group
+      .col-sm-offset-4.col-sm-10
+        %button(type='submit' class='btn btn-primary') Sign Up
