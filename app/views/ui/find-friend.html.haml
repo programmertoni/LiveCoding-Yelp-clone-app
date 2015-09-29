@@ -1,0 +1,48 @@
+%h1.text-center.large-heading Find Friend
+.row
+  .search-friend
+    .form-sign-up-log-in
+      %form.form-inline
+        .form-group
+          %input(type='text' class='form-control' placeholder='Name...')
+          %button(type='submit' class='btn btn-default default-button')
+            Search
+.row
+  %h3.text-center Users
+  .col-md-8.col-md-offset-2
+    %ul.list-of-friends
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user', text: 'Mary Smith'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Add Friend'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user', text: 'Joe Swansonrital'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Add Friend'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user', text: 'Bob Saget'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Add Friend'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user', text: 'Mary Smith'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Add Friend'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user', text: 'Mary Smith'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Add Friend'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user', text: 'Mary Smith'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Add Friend'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user', text: 'Timmothy Wan Der Koi'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Add Friend'
