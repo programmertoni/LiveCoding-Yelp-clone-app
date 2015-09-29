@@ -1,0 +1,16 @@
+%h1.text-center.large-heading New Message
+%h3.text-center for Marc Gray
+
+.row
+  .col-md-10.col-md-offset-1
+    %br
+    %form.form-sign-up-log-in
+      .form-group
+        %label(for='title') Title
+        %input(id='title' type='text' class='form-control' placeholder='Write message title...' autofocus)
+      .form-group
+        %label(for='content') Content
+        %textarea(id='content' class='rating-textarea')
+      %input(type='submit' class='btn btn-primary btn-lg' value='Send')
+      %a(href='#' class='btn btn-default default-button btn-lg') Back
+
