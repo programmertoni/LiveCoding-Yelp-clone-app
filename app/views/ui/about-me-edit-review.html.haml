@@ -1,11 +1,12 @@
 %h1.text-center.large-heading Edit Review
+%h3.text-center for Mcdonalds
 
 .row
   .col-md-3
     %ul.nav.nav-pills.nav-stacked.text-center
-      %li(role='presentation' class='active')
-        %a(href='#') Settings
       %li(role='presentation')
+        %a(href='#') Settings
+      %li(role='presentation' class='active')
         %a(href='#') Reviews
       %li(role='presentation')
         %a(href='#') Friends
@@ -19,26 +20,18 @@
         %a(href='#') Flags
   .col-md-9
     %br
-    .form-sign-up-log-in
-      %form.form-horizontal
-        .form-group
-          %label(for='full_name' class='col-sm-4 control-label') Full Name
-          .col-sm-7
-            %input(type='text' class='form-control' id='full_name' value='Toni Cesarek' placeholder='Write your full name...' autofocus)
-        .form-group
-          %label(for='password' class='col-sm-4 control-label') Password
-          .col-sm-7
-            %input(type='password' class='form-control' id='password' placeholder='Your password goes here...')
-        .form-group
-          %label(for='full_name' class='col-sm-4 control-label')
-            Change account role
-          .col-sm-7
-            %label(class='checkbox-inline')
-              %input(type='radio' name='box-1' value='user' checked)
-              User
-            %label(class='checkbox-inline')
-              %input(type='radio' name='box-1' value='owner')
-              Business Owner
-        .form-group
-          .col-sm-offset-4.col-sm-10
-            %button(type='submit' class='btn btn-primary') Save
+    %form.form-sign-up-log-in
+      .star-rating.big-stars
+        %fieldset
+          %input#star5{:name => "rating", :type => "radio", :value => "5"}/
+          %label{:for => "star5", :title => "Outstanding"} 5 stars
+          %input#star4{:name => "rating", :type => "radio", :value => "4"}/
+          %label{:for => "star4", :title => "Very Good"} 4 stars
+          %input#star3{:name => "rating", :type => "radio", :value => "3"}/
+          %label{:for => "star3", :title => "Good"} 3 stars
+          %input#star2{:name => "rating", :type => "radio", :value => "2", checked: true}/
+          %label{:for => "star2", :title => "Poor"} 2 stars
+          %input#star1{:name => "rating", :type => "radio", :value => "1"}/
+          %label{:for => "star1", :title => "Very Poor"} 1 star
+      %textarea.rating-textarea This is my review text. This restaurant is the Best.
+      %input(type='submit' class='btn btn-primary btn-lg' value='Save')
