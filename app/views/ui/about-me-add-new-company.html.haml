@@ -1,4 +1,4 @@
-%h1.text-center.large-heading My Company
+%h1.text-center.large-heading Add new Company
 
 .row
   .col-md-3
@@ -9,9 +9,9 @@
         %a(href='#') Reviews
       %li(role='presentation')
         %a(href='#') Friends
-      %li(role='presentation' class='active')
-        %a(href='#') Company
       %li(role='presentation')
+        %a(href='#') Company
+      %li(role='presentation' class='active')
         %a(href='#') Add new Company
       %li(role='presentation')
         %a(href='#') Add new Category
@@ -24,15 +24,15 @@
         .form-group
           %label(for='full_name' class='col-sm-4 control-label') Name
           .col-sm-7
-            %input(type='text' class='form-control' id='full_name' value='McDonalds' placeholder='Write your full name...' autofocus)
+            %input(type='text' class='form-control' id='full_name'  placeholder='Name of the Company...' autofocus)
         .form-group
           %label(for='full_name' class='col-sm-4 control-label') Address
           .col-sm-7
-            %input(type='text' class='form-control' id='full_name' value='Some street 234' placeholder='Write your full name...')
+            %input(type='text' class='form-control' id='full_name'  placeholder='Company address...')
         .form-group
           %label(for='full_name' class='col-sm-4 control-label') City
           .col-sm-7
-            %input(type='text' class='form-control' id='full_name' value='Ljubljana' placeholder='Write your full name...')
+            %input(type='text' class='form-control' id='full_name'  placeholder='Company City...')
         .form-group
           %label(for='full_name' class='col-sm-4 control-label')
             Price range
@@ -45,7 +45,7 @@
               %option €€€€€ (Bill Gates only section)
         .form-group
           .col-sm-offset-4.col-sm-10
-            %button(type='submit' class='btn btn-primary') Save
+            %button(type='submit' class='btn btn-primary') Add Company
         .form-group
           .col-sm-offset-4.col-sm-10
             %a(href='#' type='submit' class='btn btn-default default-button') Back
