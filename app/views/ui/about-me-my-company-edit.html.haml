@@ -1,0 +1,48 @@
+%h1.text-center.large-heading My Company
+
+.row
+  .col-md-3
+    %ul.nav.nav-pills.nav-stacked.text-center
+      %li(role='presentation')
+        %a(href='#') Settings
+      %li(role='presentation')
+        %a(href='#') Reviews
+      %li(role='presentation')
+        %a(href='#') Friends
+      %li(role='presentation' class='active')
+        %a(href='#') Company
+      %li(role='presentation')
+        %a(href='#') Add new Company
+      %li(role='presentation')
+        %a(href='#') Add new Category
+      %li(role='presentation')
+        %a(href='#') Flags
+  .col-md-6
+    %br
+    .form-sign-up-log-in
+      %form.form-horizontal
+        .form-group
+          %label(for='full_name' class='col-sm-4 control-label') Name
+          .col-sm-7
+            %input(type='text' class='form-control' id='full_name' value='McDonalds' placeholder='Write your full name...' autofocus)
+        .form-group
+          %label(for='full_name' class='col-sm-4 control-label') Address
+          .col-sm-7
+            %input(type='text' class='form-control' id='full_name' value='Some street 234' placeholder='Write your full name...')
+        .form-group
+          %label(for='full_name' class='col-sm-4 control-label') City
+          .col-sm-7
+            %input(type='text' class='form-control' id='full_name' value='Ljubljana' placeholder='Write your full name...')
+        .form-group
+          %label(for='full_name' class='col-sm-4 control-label')
+            Price range
+          .col-sm-7
+            %select.form-control
+              %option € (for anyone)
+              %option €€ (for rich people)
+              %option €€€ (for richer people)
+              %option €€€€ (you can't afford that)
+              %option €€€€€ (Bill Gates only section)
+        .form-group
+          .col-sm-offset-4.col-sm-10
+            %button(type='submit' class='btn btn-primary') Save

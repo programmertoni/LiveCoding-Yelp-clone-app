@@ -1,0 +1,44 @@
+%h1.text-center.large-heading My Company
+
+.row
+  .col-md-3
+    %ul.nav.nav-pills.nav-stacked.text-center
+      %li(role='presentation')
+        %a(href='#') Settings
+      %li(role='presentation')
+        %a(href='#') Reviews
+      %li(role='presentation')
+        %a(href='#') Friends
+      %li(role='presentation' class='active')
+        %a(href='#') Company
+      %li(role='presentation')
+        %a(href='#') Add new Company
+      %li(role='presentation')
+        %a(href='#') Add new Category
+      %li(role='presentation')
+        %a(href='#') Flags
+  .col-md-6.text-center
+    .row
+      %span.cl-effect-12
+        %a(href='#' class='company-name') McDonalds
+    .row
+      .average-stars.company-stars
+        = fa_icon 'star'
+        = fa_icon 'star'
+        = fa_icon 'star'
+        = fa_icon 'star-o'
+        = fa_icon 'star-o'
+        %span.company-reviews 116 Reviews
+      .eur.eur-all
+        = fa_icon 'eur', class: 'eur-full'
+        = fa_icon 'eur', class: 'eur-full'
+        = fa_icon 'eur', class: 'eur-full'
+        = fa_icon 'eur', class: 'eur-empty'
+        = fa_icon 'eur', class: 'eur-empty'
+    .row
+      %br
+      %div Nobelova street 34
+      %div 1000 Ljubljana
+      %div Slovenia
+      %br
+      %a(href='#' class='btn btn-primary') Edit Company
