@@ -1,0 +1,64 @@
+%h1.text-center.large-heading My Friends
+
+.row
+  .col-md-3
+    %ul.nav.nav-pills.nav-stacked.text-center
+      %li(role='presentation')
+        %a(href='#') Settings
+      %li(role='presentation')
+        %a(href='#') Reviews
+      %li(role='presentation' class='active')
+        %a(href='#') Friends
+      %li(role='presentation')
+        %a(href='#') Company
+      %li(role='presentation')
+        %a(href='#') Add new Company
+      %li(role='presentation')
+        %a(href='#') Add new Category
+      %li(role='presentation')
+        %a(href='#') Flags
+  .col-md-8
+    %ul(class='nav nav-tabs')
+      %li(role='presentation')
+        %a(href='#') Friends (5)
+      %li(role='presentation')
+        %a(href='#') Pending (3)
+      %li(role='presentation' class='active')
+        %a(href='#') blocked (7)
+      %br
+    %ul.list-of-friends
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user-secret', text: 'Mary Smith'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Unblock'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user-secret', text: 'Joe Swansonrital'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Unblock'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user-secret', text: 'Bob Saget'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Unblock'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user-secret', text: 'Mary Smith'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Unblock'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user-secret', text: 'Mary Smith'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Unblock'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user-secret', text: 'Mary Smith'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Unblock'
+      %li
+        %span.cl-effect-12
+          %a(href='#')= fa_icon 'user-secret', text: 'Timmothy Wan Der Koi'
+          %span(class='pull-right')
+            %a(href='#' class='smaller-icon green')= fa_icon 'user-plus', text: 'Unblock'

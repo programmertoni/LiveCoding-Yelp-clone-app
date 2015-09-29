@@ -19,9 +19,9 @@
         %a(href='#') Flags
   .col-md-8
     %ul(class='nav nav-tabs')
-      %li(role='presentation' class='active')
-        %a(href='#') Friends (5)
       %li(role='presentation')
+        %a(href='#') Friends (5)
+      %li(role='presentation' class='active')
         %a(href='#') Pending (3)
       %li(role='presentation')
         %a(href='#') blocked (7)
@@ -31,29 +31,17 @@
         %span.cl-effect-12
           %a(href='#')= fa_icon 'user-secret', text: 'Mary Smith'
           %span(class='pull-right')
-            %a(href='#' class='smaller-icon')= fa_icon 'ban', text: 'block'
-            %a(href='#' class='smaller-icon')= fa_icon 'close', text: 'delete'
+            %a(href='#' class='smaller-icon green')= fa_icon 'check', text: 'Accept'
+            %a(href='#' class='smaller-icon')= fa_icon 'trash-o', text: 'Reject'
       %li
         %span.cl-effect-12
           %a(href='#')= fa_icon 'user-secret', text: 'Joe Biden'
           %span(class='pull-right')
-            %a(href='#' class='smaller-icon')= fa_icon 'ban', text: 'block'
-            %a(href='#' class='smaller-icon')= fa_icon 'close', text: 'delete'
+            %a(href='#' class='smaller-icon green')= fa_icon 'check', text: 'Accept'
+            %a(href='#' class='smaller-icon')= fa_icon 'trash-o', text: 'Reject'
       %li
         %span.cl-effect-12
           %a(href='#')= fa_icon 'user-secret', text: 'Bob Sagget'
           %span(class='pull-right')
-            %a(href='#' class='smaller-icon')= fa_icon 'ban', text: 'block'
-            %a(href='#' class='smaller-icon')= fa_icon 'close', text: 'delete'
-      %li
-        %span.cl-effect-12
-          %a(href='#')= fa_icon 'user-secret', text: 'Stive Colbert'
-          %span(class='pull-right')
-            %a(href='#' class='smaller-icon')= fa_icon 'ban', text: 'block'
-            %a(href='#' class='smaller-icon')= fa_icon 'close', text: 'delete'
-      %li
-        %span.cl-effect-12
-          %a(href='#')= fa_icon 'user-secret', text: 'Tracy Johanson'
-          %span(class='pull-right')
-            %a(href='#' class='smaller-icon')= fa_icon 'ban', text: 'block'
-            %a(href='#' class='smaller-icon')= fa_icon 'close', text: 'delete'
+            %a(href='#' class='smaller-icon green')= fa_icon 'check', text: 'Accept'
+            %a(href='#' class='smaller-icon')= fa_icon 'trash-o', text: 'Reject'
