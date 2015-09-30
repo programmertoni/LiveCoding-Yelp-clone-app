@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title Yelp Clone App
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Open+Sans|Bevan', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    = render '/shared/main_navigation'
+    %main
+      .container
+        = yield
+    = render '/shared/footer'

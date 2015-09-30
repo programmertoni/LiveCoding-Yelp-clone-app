@@ -1,0 +1,100 @@
+%h1.large-heading.text-center Company
+.text-center
+  .btn.btn-primary Write a Review
+.company
+  .row
+    .col-md-7
+      .col-md-7
+        %span.cl-effect-12
+          %a(href='#' class='company-name') McDonalds
+        .average-stars.col-md-12.company-stars
+          = fa_icon 'star'
+          = fa_icon 'star'
+          = fa_icon 'star'
+          = fa_icon 'star-o'
+          = fa_icon 'star-o'
+          %span.company-reviews 116 Reviews
+        .col-md-12.eur.eur-all
+          = fa_icon 'eur', class: 'eur-full'
+          = fa_icon 'eur', class: 'eur-full'
+          = fa_icon 'eur', class: 'eur-full'
+          = fa_icon 'eur', class: 'eur-empty'
+          = fa_icon 'eur', class: 'eur-empty'
+      .col-md-5.address
+        %div Nobelova street 34
+        %div 1000 Ljubljana
+        %div Slovenia
+      .review
+        .row.col-md-12
+          %span.cl-effect-12
+            %a(href='#') Toni. C
+          wrote a review for
+          %span.cl-effect-12
+            %a(href='#') Kasca Mrlacnik
+          %span.pull-right.time-ago= fa_icon 'clock-o', text: '1 minute ago'
+        .row.review-stars.col-md-12
+          = fa_icon 'star'
+          = fa_icon 'star'
+          = fa_icon 'star'
+          = fa_icon 'star-o'
+          = fa_icon 'star-o'
+        .row
+          .col-md-8
+            %p Ne illud tritani malorum mel, te diam ubique appellantur cum. Meis appareat dissentias mel eu. Nemore forensibus eos ea, id habeo causae appellantur sit, delenit volutpat ne nam. Ius te duis vituperatoribus, sit id nullam regione officiis, no viderer percipit mea.
+        .row
+          .col-md-12
+            %span.cl-effect-12
+              %a(href='#')= fa_icon 'share-square-o', text: 'read more'
+        .row
+          .col-md-12
+            %p.light_brown Was this review?
+        .row
+          .col-md-12
+            %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'lightbulb-o', text: 'useful'
+            %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'smile-o', text: 'funny'
+            %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'empire', text: 'cool'
+
+        %hr
+      .review
+        .row.col-md-12
+          %span.cl-effect-12
+            %a(href='#') Toni. C
+          wrote a review for
+          %span.cl-effect-12
+            %a(href='#') Kasca Mrlacnik
+          %span.pull-right.time-ago= fa_icon 'clock-o', text: '1 minute ago'
+        .row.review-stars.col-md-12
+          = fa_icon 'star'
+          = fa_icon 'star'
+          = fa_icon 'star'
+          = fa_icon 'star-o'
+          = fa_icon 'star-o'
+        .row
+          .col-md-8
+            %p Ne illud tritani malorum mel, te diam ubique appellantur cum. Meis appareat dissentias mel eu. Nemore forensibus eos ea, id habeo causae appellantur sit, delenit volutpat ne nam. Ius te duis vituperatoribus, sit id nullam regione officiis, no viderer percipit mea.
+        .row
+          .col-md-12
+            %span.cl-effect-12
+              %a(href='#')= fa_icon 'share-square-o', text: 'read more'
+        .row
+          .col-md-12
+            %p.light_brown Was this review?
+        .row
+          .col-md-12
+            %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'lightbulb-o', text: 'useful'
+            %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'smile-o', text: 'funny'
+            %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'empire', text: 'cool'
+
+    .col-md-5
+      .company-google-map
+        %iframe{:frameborder => "0", :height => "443", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "https://maps.google.com/maps?hl=en&q=Pariser Platz, 10117 Berlin&ie=UTF8&t=terrain&z=6&iwloc=B&output=embed", :width => "440"}
+          %div
+            %small
+              %a{:href => "http://embedgooglemaps.com"} embedgooglemaps.com
+          %div
+            %small
+              %a{:href => "http://premiumlinkgenerator.com/keep2share-cc"} keep2share premium link generator
+.row
+  .text-center.more-reviews-button
+    %a(href='#' class='btn btn-primary') More reviews
+

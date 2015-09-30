@@ -1,0 +1,46 @@
+$star_color: $orange
+$star_hover_color: lighten($orange, 13%)
+
+.star-rating  
+  font-family: 'FontAwesome'
+  margin: 0 auto
+  > fieldset 
+    border: none
+    display: inline-block
+    &:not(:checked) 
+      > input 
+        position: absolute
+        top: -9999px
+        clip: rect(0,0,0,0)
+      > label 
+        float: right
+        width: 1em
+        padding: 0 .05em
+        overflow: hidden
+        white-space: nowrap
+        cursor: pointer
+        font-size: 150%
+        color: $star_color
+        &:before 
+          content: '\f006  '
+        &:hover,
+        &:hover ~ label 
+          color: $star_hover_color
+          text-shadow: 0 0 3px $star_hover_color
+          &:before 
+            content: '\f005  '
+    > input:checked 
+      & ~ label 
+        &:before 
+          content: '\f005  '
+    > label:active
+      position: relative
+      top: 2px
+
+.review-stars
+  font-size: 150%
+  color: $star_color
+
+.average-stars
+  font-size: 150%
+  color: $light_brown

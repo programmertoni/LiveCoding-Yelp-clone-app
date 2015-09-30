@@ -1,0 +1,62 @@
+.container.navigation-container
+  .row
+    .text-center.logo
+      %h1 Yelp
+      .logo-subheading.bevan clone app
+    .col-md-9.col-md-offset-2
+      %form.form-inline
+        .form-group
+          %input(type='text' class='form-control'
+                 placeholder='find business...')
+          %select.form-control
+            %option all citys
+            %option Ljubljana
+            %option Berlin
+            %option Paris
+            %option New york
+            %option Los Angeles
+          %select.form-control
+            %option all categories
+            %option Restrurants
+            %option Travel
+            %option Spa
+            %option Hotels
+            %option Health
+          %button(type='submit' class='btn btn-default default-button')
+            Search
+    .col-md-1
+      %span.dropdown.pull-right
+        %a(class="dropdown-toggle btn btn-primary" data-toggle="dropdown"
+          href="#" role="button" aria-haspopup="true" aria-expanded="false")
+          Toni C.
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            %a 
+              %span.glyphicon.glyphicon-user 
+                %span 3
+              %span.glyphicon.glyphicon-star
+                %span 12
+          %li
+            %a(href='#') About Me
+          %li
+            %a(href='#') Account Settings
+          %li(role='separator' class='divider')
+          %li
+            %a(href='#') Log Out
+    .col-md-9.col-md-offset-2
+      .nav.nav-pills.main-navigation
+        %li(role='presentation' class='active')
+          %a(href='#') Home
+        %li(role='presentation')
+          %a(href='#') About me
+        %li(role='presentation')
+          %a(href='#') Write a review
+        %li(role='presentation')
+          %a(href='#') Find friends
+        %li(role='presentation')
+          %a(href='#') Messages
+        %li(role='presentation')
+          %a(href='#') About us
+        %li(role='presentation')
+          %a(href='#') Help
