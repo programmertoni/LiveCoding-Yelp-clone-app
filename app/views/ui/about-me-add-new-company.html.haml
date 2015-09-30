@@ -44,6 +44,16 @@
               %option €€€€ (you can't afford that)
               %option €€€€€ (Bill Gates only section)
         .form-group
+          %label(for='full_name' class='col-sm-4 control-label')
+            Category
+          .col-sm-7
+            %select(class='form-control' multiple)
+              %option Restaurants
+              %option Travel
+              %option Hotels
+              %option Spa
+              %option Health
+        .form-group
           .col-sm-offset-4.col-sm-10
             %button(type='submit' class='btn btn-primary') Add Company
         .form-group
