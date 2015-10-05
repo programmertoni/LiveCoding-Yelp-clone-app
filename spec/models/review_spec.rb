@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Message do
+describe Review do
 
   it { is_expected.to belong_to(:user) }
 
