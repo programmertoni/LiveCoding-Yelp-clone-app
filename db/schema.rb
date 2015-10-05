@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005141550) do
+ActiveRecord::Schema.define(version: 20151005152713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "category", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "title"
   end
 
@@ -33,11 +33,9 @@ ActiveRecord::Schema.define(version: 20151005141550) do
     t.string  "address"
     t.string  "city"
     t.integer "price_range", limit: 2
-    t.integer "category_id"
     t.integer "user_id"
   end
 
-  add_index "companies", ["category_id"], name: "index_companies_on_category_id", using: :btree
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "flags", force: :cascade do |t|
@@ -55,12 +53,12 @@ ActiveRecord::Schema.define(version: 20151005141550) do
     t.boolean  "pending"
     t.boolean  "user_blocked"
     t.integer  "user_id"
-    t.integer  "friend_id"
+    t.integer  "id_of_friend"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "friends", ["friend_id"], name: "index_friends_on_friend_id", using: :btree
+  add_index "friends", ["id_of_friend"], name: "index_friends_on_id_of_friend", using: :btree
   add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
