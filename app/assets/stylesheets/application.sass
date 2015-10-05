@@ -143,8 +143,11 @@ hr
 .time-ago
   color: $light_brown
 
-.default-button, .default-button:hover
+.default-button
   color: $brown
+  &:hover
+    color: $light_brown
+    border-color: $light_brown
 
 footer .container
   background-color: rgba(#fff, 0.0)
@@ -261,7 +264,8 @@ a.smaller-icon
   font-size: 1.2em
   li
     border-bottom: 1px solid $brown
-    padding: 20px 0
+    padding: 0 0 20px 0
+    margin: 0 0 40px 0
   li:last-child
     border-bottom: none
 
@@ -300,6 +304,9 @@ a.smaller-icon
 .green.smaller-icon
   color: $green
 
+.green
+  color: $green
+
 .search-friend
   width: 355px
   margin: 0 auto
@@ -313,3 +320,8 @@ table
 .table-padding-cell
   padding-top: 15px !important
 
+.open-sans
+  font-family: 'Open Sans'
+
+.red
+  color: $light_brown
