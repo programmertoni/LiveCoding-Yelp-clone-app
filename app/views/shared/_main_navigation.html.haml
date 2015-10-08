@@ -25,38 +25,40 @@
           %button(type='submit' class='btn btn-default default-button')
             Search
     .col-md-1
-      %span.dropdown.pull-right
-        %a(class="dropdown-toggle btn btn-primary" data-toggle="dropdown"
-          href="#" role="button" aria-haspopup="true" aria-expanded="false")
-          Toni C.
-          %span.caret
-        %ul.dropdown-menu
-          %li
-            %a 
-              %span.glyphicon.glyphicon-user 
-                %span 3
-              %span.glyphicon.glyphicon-star
-                %span 12
-          %li
-            %a(href='#') About Me
-          %li
-            %a(href='#') Account Settings
-          %li(role='separator' class='divider')
-          %li
-            %a(href='#') Log Out
+      - if logged_in?
+        %span.dropdown.pull-right
+          %a(class="dropdown-toggle btn btn-primary" data-toggle="dropdown"
+            href="#" role="button" aria-haspopup="true" aria-expanded="false")
+            = shorten_full_name(current_user.full_name.titleize)
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              %a 
+                %span.glyphicon.glyphicon-user 
+                  %span 3
+                %span.glyphicon.glyphicon-star
+                  %span 12
+            %li
+              %a(href='#') About Me
+            %li
+              %a(href='#') Account Settings
+            %li(role='separator' class='divider')
+            %li
+              = link_to 'Log Out', logout_path
     .col-md-9.col-md-offset-2
       .nav.nav-pills.main-navigation
-        %li(role='presentation' class='active')
-          %a(href='#') Home
-        %li(role='presentation')
-          %a(href='#') About me
-        %li(role='presentation')
-          %a(href='#') Write a review
-        %li(role='presentation')
-          %a(href='#') Find friends
-        %li(role='presentation')
-          %a(href='#') Messages
-        %li(role='presentation')
-          %a(href='#') About us
-        %li(role='presentation')
-          %a(href='#') Help
+        %li(role='presentation' class="#{cp(root_path)}")
+          = link_to 'Home', root_path
+        - if logged_in?
+          %li(role='presentation')
+            %a(href='#') About me
+          %li(role='presentation')
+            %a(href='#') Write a review
+          %li(role='presentation')
+            %a(href='#') Find friends
+          %li(role='presentation')
+            %a(href='#') Messages
+        %li(role='presentation' class="#{cp(about_us_path)}")
+          = link_to 'About us', about_us_path
+        %li(role='presentation' class="#{cp(help_path)}")
+          = link_to 'Help', help_path

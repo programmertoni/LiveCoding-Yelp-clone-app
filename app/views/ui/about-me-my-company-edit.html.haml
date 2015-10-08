@@ -1,4 +1,5 @@
 %h1.text-center.large-heading Edit Company
+%br
 
 .row
   .col-md-3
@@ -24,30 +25,32 @@
         .form-group
           %label(for='full_name' class='col-sm-4 control-label') Name
           .col-sm-7
-            %input(type='text' class='form-control' id='full_name' value='McDonalds' placeholder='Write your full name...' autofocus)
+            %input(type='text' class='form-control' id='full_name'  placeholder='Name of the Company...' autofocus value='McDonalds')
         .form-group
-          %label(for='full_name' class='col-sm-4 control-label') Address
+          %label(for='city' class='col-sm-4 control-label')
+            Ctiy
           .col-sm-7
-            %input(type='text' class='form-control' id='full_name' value='Some street 234' placeholder='Write your full name...')
+            %select.form-control#city
+              %option Ljubljana
+              %option Berlin
+              %option(selected) London
+              %option New Yourk
+              %option Los Angeles
         .form-group
-          %label(for='full_name' class='col-sm-4 control-label') City
-          .col-sm-7
-            %input(type='text' class='form-control' id='full_name' value='Ljubljana' placeholder='Write your full name...')
-        .form-group
-          %label(for='full_name' class='col-sm-4 control-label')
+          %label(for='price-range' class='col-sm-4 control-label')
             Price range
           .col-sm-7
-            %select.form-control
+            %select.form-control#price-range
               %option € (for anyone)
-              %option €€ (for rich people)
+              %option(selected) €€ (for rich people)
               %option €€€ (for richer people)
               %option €€€€ (you can't afford that)
               %option €€€€€ (Bill Gates only section)
         .form-group
-          %label(for='full_name' class='col-sm-4 control-label')
+          %label(for='category' class='col-sm-4 control-label')
             Category
           .col-sm-7
-            %select(class='form-control' multiple)
+            %select(class='form-control' id='category' multiple)
               %option(selected) Restaurants
               %option Travel
               %option(selected) Hotels

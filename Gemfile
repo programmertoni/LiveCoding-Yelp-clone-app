@@ -37,6 +37,8 @@ group :development, :test do
   gem 'pry-nav',      '0.2.4'
   gem 'rspec-rails',  '3.3.3'
   gem 'faker',        '1.5.0'
+
+
 end
 
 group :production do

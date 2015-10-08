@@ -1,0 +1,18 @@
+%h1.text-center.large-heading Log in
+%br
+
+.form-sign-up-log-in
+  = bootstrap_form_tag url: '/login', layout: :horizontal do |f|
+    = f.text_field     :full_name,
+                        label:        'Full Name',
+                        label_class:  'col-sm-offset-2',
+                        control_col:  'col-sm-7',
+                        autofocus:     true,
+                        placeholder:  'Write your full name...'
+
+    = f.password_field :password,
+                        label_class: 'col-sm-offset-2',
+                        control_col: 'col-sm-7',
+                        placeholder: 'Your password goes here...'
+
+    = f.submit 'Log in', class: 'btn btn-primary submit-form-button'

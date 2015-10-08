@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: myflix_development
+  database: yelp_development
   pool: 5
   port: 5432
   username: 'toni'
@@ -10,7 +10,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: myflix_test
+  database: yelp_test
   pool: 5
   username: 'toni'
   password: 'chesho'
