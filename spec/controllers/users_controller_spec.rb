@@ -53,6 +53,86 @@ describe UsersController do
         expect(User.all.count).to eq(0)
       end
     end
+  end
+
+  describe 'GET #edit' do
+    context 'when user is logged in' do
+      let(:user) { Fabricate(:user) }
+
+      it 'assigns @user' do
+        session[:user_id] = user.id 
+        get :edit, id: user.id
+        expect(assigns[:user]).to eq(User.first)
+      end
+    end
+
+    context 'when user is not logged in' do
+      let(:user) { Fabricate(:user) }
+
+      it 'redirects to login_path' do
+        get :edit, id: user.id
+        expect(response).to redirect_to(login_path)
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'when user is logged in' do
+      let(:user) { Fabricate(:user, role: 'user') }
+      before(:example) { session[:user_id] = user.id }
+
+      it 'redirects to edit_path' do
+        patch :update, id: user.id, user: { full_name: user.full_name, password: '', role: user.role }
+        expect(response).to redirect_to(edit_user_path(user))
+      end
+
+      it 'displays success flash message' do
+        patch :update, id: user.id, user: { full_name: user.full_name, password: '', role: user.role }
+        expect(flash[:success]).to eq("You've successfuly updated you're account settings.")
+      end
+
+      it 'assigns @user' do
+        patch :update, id: user.id, user: { full_name: user.full_name, password: '', role: user.role }
+        expect(assigns[:user]).to eq(User.first)
+      end
+
+      it 'updates only full_name' do
+        patch :update, id: user.id, user: { full_name: 'Tonko Balkonko', password: '', role: user.role }
+        expect(User.first.full_name).to eq('Tonko Balkonko')
+      end
+
+      it 'updates only role' do
+        patch :update, id: user.id, user: { full_name: user.full_name, password: '', role: 'owner' }
+        expect(User.first.role).to eq('owner')
+      end
+
+      it 'updates full_name, password and role' do
+        patch :update, id: user.id, user: { full_name: 'Tonko Balonko', password: 'NewPassword', role: 'owner' }
+        expect(User.first.full_name).to eq('Tonko Balonko')
+        expect(User.first.role).to eq('owner')
+      end
+
+      it 'cannot update role to admin' do
+        patch :update, id: user.id, user: { full_name: user.full_name, password: '', role: 'admin' }
+        expect(User.first.role).to eq('user')
+      end
+
+      it 'cannot update diffrent users credentials' do
+        diffrent_user = Fabricate(:user)
+        patch :update, id: diffrent_user.id, user: { full_name: 'Tonko Balonko', password: '', role: 'owner' }
+        expect(User.last.full_name).to eq(diffrent_user.full_name)
+        expect(User.last.role).to eq(diffrent_user.role)
+      end
+    end
+
+    context 'when user is not logged in' do
+      let(:user) { Fabricate(:user) }
+
+      it 'is redirected to login_path' do
+        patch :update, id: user.id, user: { full_name: user.full_name, password: '', role: user.role }
+        expect(response).to redirect_to(login_path)
+      end
+    end
 
   end
 

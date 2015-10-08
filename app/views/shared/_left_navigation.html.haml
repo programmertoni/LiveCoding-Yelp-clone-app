@@ -1,0 +1,17 @@
+.col-md-3
+  - if logged_in?
+    %ul.nav.nav-pills.nav-stacked.text-center
+      %li(role='presentation' class="#{cp(edit_user_path(current_user))}")
+        = link_to 'Settings', edit_user_path(current_user)
+      %li(role='presentation')
+        %a(href='#') Reviews
+      %li(role='presentation')
+        %a(href='#') Friends
+      %li(role='presentation')
+        %a(href='#') Company
+      %li(role='presentation')
+        %a(href='#') Add new Company
+      %li(role='presentation')
+        %a(href='#') Add new Category
+      %li(role='presentation')
+        %a(href='#') Flags

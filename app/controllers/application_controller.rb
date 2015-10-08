@@ -20,4 +20,9 @@ class ApplicationController < ActionController::Base
     flash[:danger] = 'You have to be logged in!'
   end
 
+  def require_same_user
+    user_id = params[:user_id] || params[:id]
+    access_denied unless logged_in? && session[:user_id] == user_id.to_i
+  end
+
 end
