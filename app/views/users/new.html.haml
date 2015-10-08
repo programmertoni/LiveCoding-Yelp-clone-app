@@ -1,0 +1,17 @@
+%h1.text-center.large-heading Sign Up
+%br
+
+.form-sign-up-log-in
+  = bootstrap_form_for @user, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-7"  do |f|
+    = f.text_field :full_name,
+      label: 'Full Name',
+      autofocus: true,
+      placeholder: 'Write your full name...'
+
+    = f.password_field :password,
+      placeholder: 'Your password goes here...'
+    = f.form_group :role, label: { text: 'Create account for' } do
+      = f.radio_button :role, 'user', label: 'User', inline: true, checked: true
+      = f.radio_button :role, 'owner', label: 'Bussines owner', inline: true
+
+    = f.submit 'Sign Up', class: 'btn btn-primary submit-form-button'
