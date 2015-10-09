@@ -1,0 +1,14 @@
+%h1.text-center.large-heading Categories
+%br
+.row
+  = render 'shared/left_navigation'
+  .col-md-6
+    %ul.list-of-categories
+      - @categories.each do |category|
+        %li
+          = category.title
+          %span(class='pull-right cl-effect-12')
+            = link_to edit_category_path(category), class: 'category-icon' do
+              = fa_icon 'edit', text: 'edit'
+            = link_to category_path(category), method: :delete, class: 'category-icon' do
+              = fa_icon 'close', text: 'delete'

@@ -123,7 +123,10 @@ describe CompaniesController do
     end
 
     context 'when owner is nog togged in' do
-      it 'redirects to login_path'
+      it 'redirects to login_path' do
+        get :edit, user_id: owner.id, id: company.id
+        expect(response).to redirect_to(login_path)
+      end
     end
   end
 

@@ -1,0 +1,7 @@
+.form-sign-up-log-in
+  = bootstrap_form_for @category, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-7"  do |f|
+    = f.text_field :title,
+      placeholder: 'Title for the Category...',
+      autofocus: true
+
+    = f.submit @category.new_record? ? 'Add Category' : 'Save', class: 'btn btn-primary submit-form-button'

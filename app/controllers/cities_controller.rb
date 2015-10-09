@@ -31,6 +31,7 @@ class CitiesController < ApplicationController
       flash[:success] = "City was successfuly updated!"
       redirect_to cities_path
     else
+      render :edit
     end
   end
 

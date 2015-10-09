@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     resources :companies, only: [:new, :create, :edit, :update, :index, :destroy]
   end
 
-  resources :cities,    only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :cities,     only: [:index, :new, :create, :edit, :update, :destroy]
 
   resources :reviews, only: [] do
     get 'recent', on: :collection
