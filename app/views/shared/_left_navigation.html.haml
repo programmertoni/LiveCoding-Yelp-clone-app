@@ -3,15 +3,13 @@
     %ul.nav.nav-pills.nav-stacked.text-center
       %li(role='presentation' class="#{cp(edit_user_path(current_user))}")
         = link_to 'Settings', edit_user_path(current_user)
-      %li(role='presentation')
-        %a(href='#') Reviews
-      %li(role='presentation')
-        %a(href='#') Friends
-      %li(role='presentation')
-        %a(href='#') Company
-      %li(role='presentation')
-        %a(href='#') Add new Company
-      %li(role='presentation')
-        %a(href='#') Add new Category
-      %li(role='presentation')
-        %a(href='#') Flags
+      - if owner? || admin?
+        %li(role='presentation' class="#{cp(user_companies_path(current_user))}")
+          = link_to 'My Companies', user_companies_path(current_user)
+        %li(role='presentation' class="#{cp(new_user_company_path(current_user))}")
+          = link_to 'Add new Company', new_user_company_path(current_user)
+      - if admin?
+        %li(role='presentation' class="#{cp(cities_path)}")
+          = link_to 'All Cities', cities_path
+        %li(role='presentation' class="#{cp(new_city_path)}")
+          = link_to 'Add new City', new_city_path

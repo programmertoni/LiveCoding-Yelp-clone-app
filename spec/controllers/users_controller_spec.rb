@@ -101,15 +101,9 @@ describe UsersController do
         expect(User.first.full_name).to eq('Tonko Balkonko')
       end
 
-      it 'updates only role' do
-        patch :update, id: user.id, user: { full_name: user.full_name, password: '', role: 'owner' }
-        expect(User.first.role).to eq('owner')
-      end
-
-      it 'updates full_name, password and role' do
-        patch :update, id: user.id, user: { full_name: 'Tonko Balonko', password: 'NewPassword', role: 'owner' }
+      it 'updates full_name, password' do
+        patch :update, id: user.id, user: { full_name: 'Tonko Balonko', password: 'NewPassword' }
         expect(User.first.full_name).to eq('Tonko Balonko')
-        expect(User.first.role).to eq('owner')
       end
 
       it 'cannot update role to admin' do

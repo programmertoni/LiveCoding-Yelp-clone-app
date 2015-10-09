@@ -9,8 +9,13 @@ class User < ActiveRecord::Base
   validates  :full_name, presence: true
   validates  :role,
               presence: true,
-              exclusion: { in: ['admin'] }
+              exclusion: { in: ['admin'] },
+              on: [:create]
 
   has_secure_password
+
+  def self.create_admin
+
+  end
 
 end

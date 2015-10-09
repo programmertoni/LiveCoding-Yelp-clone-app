@@ -1,0 +1,11 @@
+.form-sign-up-log-in
+  = bootstrap_form_for @city, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-7"  do |f|
+    = f.text_field :name,
+      label: 'City',
+      autofocus: true,
+      placeholder: 'Write a name of the City...'
+
+    = f.text_field :country,
+      placeholder: 'Write a name of the Country...'
+
+    = f.submit @city.new_record? ? 'Add City' : 'Save', class: 'btn btn-primary submit-form-button'

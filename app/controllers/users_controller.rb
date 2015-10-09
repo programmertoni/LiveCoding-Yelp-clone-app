@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(user_params)
+    if @user.update(user_params_without_role)
       flash[:success] = "You've successfuly updated you're account settings."
       redirect_to edit_user_path(@user)
     else
@@ -37,6 +37,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:full_name, :password, :role)
+  end
+
+  def user_params_without_role
+    params.require(:user).permit(:full_name, :password)
   end
 
 end

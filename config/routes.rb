@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   get  '/logout',   to: 'sessions#destroy'
   get  '/signup',   to: 'users#new'
 
-  resources :users, only: [:create, :edit, :update]
+  resources :users,     only: [:create, :edit, :update] do
+    resources :companies, only: [:new, :create, :edit, :update, :index, :destroy]
+  end
+
+  resources :cities,    only: [:index, :new, :create, :edit, :update, :destroy]
 
   resources :reviews, only: [] do
     get 'recent', on: :collection
