@@ -39,7 +39,7 @@
                 %span.glyphicon.glyphicon-star
                   %span 12
             %li
-              %a(href='#') About Me
+              = link_to 'About Me', reviews_user_path(current_user)
             %li
               = link_to 'Account Settings', edit_user_path(current_user)
             %li(role='separator' class='divider')
@@ -50,12 +50,12 @@
         %li(role='presentation' class="#{cp(root_path)}")
           = link_to 'Home', root_path
         - if logged_in?
-          %li(role='presentation')
-            %a(href='#') About me
+          %li(role='presentation' class="#{cp(reviews_user_path(current_user))}")
+            = link_to 'About me', reviews_user_path(current_user)
           %li(role='presentation' class="#{cp(listed_companies_path)}")
             = link_to 'Write a review', listed_companies_path
-          %li(role='presentation')
-            %a(href='#') Find friends
+          %li(role='presentation' class="#{cp(find_friend_path)}")
+            = link_to 'Find Friends', find_friend_path
           %li(role='presentation')
             %a(href='#') Messages
         %li(role='presentation' class="#{cp(about_us_path)}")

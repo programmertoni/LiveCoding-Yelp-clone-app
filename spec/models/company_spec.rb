@@ -10,5 +10,6 @@ describe Company do
 
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:price_range) }
+  it { is_expected.to validate_presence_of(:city_id) }
 
 end

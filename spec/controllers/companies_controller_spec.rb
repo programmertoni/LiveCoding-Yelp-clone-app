@@ -28,15 +28,27 @@ describe CompaniesController do
       let(:owner) { Fabricate(:user, role: 'owner') }
       let(:user)  { Fabricate(:user, role: 'user') }
 
-      before(:example) do
-        session[:user_id] = owner.id
+      context 'with valid params' do
+
+        before(:example) do
+          session[:user_id] = owner.id
+        end
+
+        it 'creates new company' do
+          post :create,
+                user_id: owner.id, company: Fabricate.attributes_for(:company)
+          expect(Company.all.count).to eq(1)
+          expect(flash[:success]).to eq("You've just created new company!")
+        end
       end
 
-      it 'creates new company' do
-        post :create,
-              user_id: owner.id, company: Fabricate.attributes_for(:company)
-        expect(Company.all.count).to eq(1)
-        expect(flash[:success]).to eq("You've just created new company!")
+      context 'with invalid params' do
+        it 'renders new template to display errors' do
+          skip
+          post :create,
+                user_id: owner.id, company: Fabricate.attributes_for(:company, name: '', price_range: nil)
+          expect(response).to render_template(:new)
+        end
       end
     end
 

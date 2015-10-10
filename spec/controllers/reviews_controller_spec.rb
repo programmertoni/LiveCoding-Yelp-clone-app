@@ -40,7 +40,7 @@ describe ReviewsController do
       it 'renders new template if there are invalid params' do
         post :create, user_id: user.id, company_id: company.id, review: Fabricate.attributes_for(:review, content: '')
         expect(Review.all.count).to eq(0)
-        expect(flash[:danger]).to eq('You have to mark star and write a comment up to 300 characters!')
+        expect(flash[:danger]).to eq('You have to mark star and write a comment up to 500 characters!')
       end
 
       it 'user san create only one review per company'

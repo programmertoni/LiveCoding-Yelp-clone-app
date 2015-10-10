@@ -13,8 +13,9 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @user = User.find(current_user.id)
-    if @user.companies.create(company_params)
+    @user    = User.find(current_user.id)
+    @company = @user.companies.build(company_params)
+    if @company.save
       flash[:success] = "You've just created new company!"
       redirect_to user_companies_path(@user)
     else

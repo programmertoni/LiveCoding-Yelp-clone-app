@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
       flash[:success] = 'You have successfully created Review.'
       redirect_to reviews_user_path(current_user)
     else
-      flash[:danger] = 'You have to mark star and write a comment up to 300 characters!'
+      flash[:danger] = 'You have to mark star and write a comment up to 500 characters!'
       redirect_to new_user_company_review_path(@user, @company)
     end
 
