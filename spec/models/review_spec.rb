@@ -9,6 +9,5 @@ describe Review do
 
   it { is_expected.to validate_presence_of(:stars) }
   it { is_expected.to validate_presence_of(:content) }
-  it { is_expected.to validate_uniqueness_of(:user_id).scoped_to([:user_id, :company_id]]) }
-  # it { should validate_uniqueness_of(:user_id).scoped_to(:game_id)}
+  # it { is_expected.to validate_uniqueness_of(:user_id).scoped_to([:user_id, :company_id]) }
 end

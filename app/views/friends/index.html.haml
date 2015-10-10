@@ -1,0 +1,19 @@
+%h1.text-center.large-heading Find User
+.row
+  .search-friend
+    .form-sign-up-log-in
+      %form.form-inline
+      = form_tag search_friend_path, class: 'form-inline', method: :get do
+        .form-group
+          = text_field_tag :name, nil, placeholder:'Name...', class: 'form-control'
+          = submit_tag 'Search', class: 'btn btn-default default-button'
+.row
+  %h3.text-center All Users
+  .col-md-8.col-md-offset-2
+    %ul.list-of-friends
+      - @not_friends.each do |user|
+        %li
+          %span.cl-effect-12
+            %a(href='#')= fa_icon 'user', text: "#{user.full_name}"
+            %span(class='pull-right')
+              %a(href='#' class='smaller-icon green')= fa_icon 'paper-plane-o', text: 'Friend Request'

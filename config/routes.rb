@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get  '/logout',           to: 'sessions#destroy'
   get  '/signup',           to: 'users#new'
   get  '/listed-companies', to: 'reviews#listed_companies'
+  get  '/find-friend',      to: 'friends#index'
+  get  '/search-friend',    to: 'friends#search'
 
   resources :users, only: [:create, :edit, :update] do
     member do
