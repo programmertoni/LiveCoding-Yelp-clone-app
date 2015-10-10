@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-20.times do
+100.times do
   User.create(full_name: Faker::Name.name,
               password: 'password',
               role: %w(user owner).sample)
@@ -29,28 +29,34 @@ Category.create(title: 'Fnancal Services')
 Category.create(title: 'Travel')
 
 
-user  = User.create(full_name: Faker::Name.name,
+user  = User.create(full_name: 'Toni Cesarek',
                    password: 'password',
-                   role: %w(user owner).sample)
+                   role: 'user')
 
-owner = User.create(full_name: Faker::Name.name,
+owner = User.create(full_name: 'Owner Toni',
                     password: 'password',
-                    role: %w(user owner).sample)
+                    role: 'owner')
 
-admin = User.create(full_name: Faker::Name.name,
+admin = User.create(full_name: 'Admin Toni',
                     password: 'password',
-                    role: %w(user owner).sample)
+                    role: 'user')
 
 admin.update(role: 'admin')
 
-100.times do
+10.times do
   Company.create(name: Faker::Company.name,
                  price_range: (1..5).to_a.sample,
                  owner: [owner, admin].sample,
                  city_id: City.all.pluck(:id).sample)
 end
 
-100.times do
+Company.all.each do |company|
+  (1..3).to_a.sample.times do
+    company.categories << Category.all.sample
+  end
+end
+
+200.times do
   Review.create(stars: (1..5).to_a.sample,
                 content: Faker::Lorem.word,
                 user_id: (1..20).to_a.sample,

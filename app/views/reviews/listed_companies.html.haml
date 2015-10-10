@@ -35,7 +35,11 @@
       .col-md-2
         %br
         %br
-        = link_to 'Write  a Review', new_user_company_review_path(company.owner, company), class: 'btn btn-primary'
+        -#the if statement checks if user has already wrote review for this company
+        - if current_user.reviews.pluck(:company_id).include?(company.id)
+          = link_to 'Write a review', '#', class: 'btn btn-primary disabled'
+        - else
+          = link_to 'Write  a Review', new_user_company_review_path(company.owner, company), class: 'btn btn-primary'
 
     %hr
 
