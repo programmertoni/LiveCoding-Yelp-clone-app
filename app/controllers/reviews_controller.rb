@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :require_user, except: [:recent]
+  before_action :require_same_user, only: [:update, :destroy]
 
   def new
     @user    = User.find(params[:user_id])
@@ -11,7 +12,7 @@ class ReviewsController < ApplicationController
     @user          = User.find(params[:user_id])
     @company       = Company.find(params[:company_id])
     @review         = Review.new(review_params)
-    @review.user    = @user
+    @review.user    = current_user
     @review.company = @company
 
     if @review.save
@@ -25,12 +26,26 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @user    = User.find(params[:user_id])
+    @company = Company.find(params[:company_id])
+    @review  = Review.find(params[:id])
   end
 
   def update
+    @user    = current_user
+    @company = Company.find(params[:company_id])
+    @review  = Review.find(params[:id])
+
+    if @review.update(review_params)
+      redirect_to reviews_user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    Review.find(params[:id]).destroy
+    redirect_to reviews_user_path(current_user)
   end
 
   def listed_companies

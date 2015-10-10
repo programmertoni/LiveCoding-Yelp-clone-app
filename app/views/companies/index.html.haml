@@ -19,12 +19,15 @@
           = link_to category.title, '#', class: 'label label-primary'
       .row
         .average-stars.company-stars
-          = fa_icon 'star'
-          = fa_icon 'star'
-          = fa_icon 'star'
-          = fa_icon 'star-o'
-          = fa_icon 'star-o'
-          %span.company-reviews 116 Reviews
+          - full_stars = average_rating(company)
+          - 5.times do
+            - if full_stars > 0
+              = fa_icon 'star'
+              - full_stars -= 1
+            - else
+              = fa_icon 'star-o'
+          %span.company-reviews
+            = "#{company.reviews.count} Reviews"
         .eur.eur-all
           - full_euro_icons = company.price_range
           - 5.times do

@@ -12,12 +12,15 @@
           - company.categories.each do |category|
             = link_to category.title, '#', class: 'label label-primary'
         .review-stars.col-md-12.company-stars.average-stars
-          = fa_icon 'star'
-          = fa_icon 'star'
-          = fa_icon 'star'
-          = fa_icon 'star-o'
-          = fa_icon 'star-o'
-          %span.sum-reviews.company-reviews 116 Reviews
+          - full_stars = average_rating(company)
+          - 5.times do
+            - if full_stars > 0
+              = fa_icon 'star'
+              - full_stars -= 1
+            - else
+              = fa_icon 'star-o'
+          %span.sum-reviews.company-reviews
+            = "#{company.reviews.count} Reviews"
           .col-md-12.eur.eur-all-search
             - full_euro_icons = company.price_range
             - 5.times do

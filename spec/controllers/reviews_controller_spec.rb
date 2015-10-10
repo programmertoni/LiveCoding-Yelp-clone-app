@@ -55,18 +55,110 @@ describe ReviewsController do
   end
 
   describe 'GET #edit' do
-    context 'when user is logged in'
-    context 'when user is not logged in'
+    let(:user)    { Fabricate(:user) }
+    let(:owner)   { Fabricate(:user, role: 'owner') }
+    let(:company) { Fabricate(:company, owner: owner) }
+    let(:review)  { Fabricate(:review, company: company, user: owner) }
+
+    context 'when user is logged in' do
+      it 'assigns @reivew' do
+        session[:user_id] = user.id
+        get :edit, user_id: owner.id, company_id: company.id, id: review.id
+        expect(assigns[:review]).to be_a(Review)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        get :edit, user_id: owner.id, company_id: company.id, id: review.id
+        expect(response).to redirect_to(login_path)
+      end
+    end
   end
 
   describe 'PATCH #update' do
-    context 'when user is logged in'
-    context 'when user is not logged in'
+    let(:user)    { Fabricate(:user) }
+    let(:owner)   { Fabricate(:user, role: 'owner') }
+    let(:company) { Fabricate(:company, owner: owner) }
+    let(:review)  { Fabricate(:review, company: company, user: owner) }
+
+    context 'when user is logged in' do
+      it 'redirects_to user reviews page' do
+        session[:user_id] = user.id
+        get :update, user_id: user.id, company_id: company.id, id: review.id, review: Fabricate.attributes_for(:review)
+        expect(response).to redirect_to(reviews_user_path(user))
+      end
+
+      it 'updates review' do
+        session[:user_id] = user.id
+        get :update, user_id: user.id, company_id: company.id, id: review.id, review: Fabricate.attributes_for(:review, content: 'Changed!!!')
+        expect(review.reload.content).to eq('Changed!!!')
+      end
+
+      it 'renders edit page params do not validate' do
+        session[:user_id] = user.id
+        get :update, user_id: user.id, company_id: company.id, id: review.id, review: Fabricate.attributes_for(:review, content: '')
+        expect(response).to render_template(:edit)
+      end
+
+      it 'cannot update other user review' do
+        session[:user_id] = user.id
+        get :update, user_id: owner.id, company_id: company.id, id: review.id, review: Fabricate.attributes_for(:review, content: 'Heker changed this review!')
+        expect(review.reload.content).not_to eq('Heker changed this review!')
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to login path' do
+        get :update, user_id: owner.id, company_id: company.id, id: review.id, review: Fabricate.attributes_for(:review, content: 'Heker changed this review!')
+        expect(response).to redirect_to(login_path)
+      end
+
+      it 'does not update the review' do
+        review
+        get :update, user_id: user.id, company_id: company.id, id: review.id, review: Fabricate.attributes_for(:review, content: 'Changed!!!')
+        expect(review.reload.content).not_to eq('Changed!!!')
+      end
+    end
   end
 
   describe 'DETLETE #destroy' do
-    context 'when user is logged in'
-    context 'when user is not logged in'
+    let(:user)    { Fabricate(:user) }
+    let(:owner)   { Fabricate(:user, role: 'owner') }
+    let(:company) { Fabricate(:company, owner: owner) }
+    let(:review)  { Fabricate(:review, company: company, user: owner) }
+
+    context 'when user is logged in' do
+      it 'redirects to user reviews page' do
+        session[:user_id] = user.id
+        delete :destroy, user_id: user.id, company_id: company.id, id: review.id
+        expect(response).to redirect_to(reviews_user_path(user))
+      end
+
+      it 'deletes the users review' do
+        session[:user_id] = user.id
+        delete :destroy, user_id: user.id, company_id: company.id, id: review.id
+        expect(Review.all.count).to eq(0)
+      end
+
+      it 'cannot delete other users review' do
+        session[:user_id] = user.id
+        delete :destroy, user_id: owner.id, company_id: company.id, id: review.id
+        expect(Review.all.count).to eq(1)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        delete :destroy, user_id: owner.id, company_id: company.id, id: review.id
+        expect(response).to redirect_to(login_path)
+      end
+
+      it 'does not delete review' do
+        delete :destroy, user_id: user.id, company_id: company.id, id: review.id
+        expect(Review.all.count).to eq(1)
+      end
+    end
   end
 
   describe 'GET #listed_companies' do
