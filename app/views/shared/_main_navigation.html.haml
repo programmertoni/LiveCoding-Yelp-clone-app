@@ -52,8 +52,8 @@
         - if logged_in?
           %li(role='presentation')
             %a(href='#') About me
-          %li(role='presentation')
-            %a(href='#') Write a review
+          %li(role='presentation' class="#{cp(listed_companies_path)}")
+            = link_to 'Write a review', listed_companies_path
           %li(role='presentation')
             %a(href='#') Find friends
           %li(role='presentation')

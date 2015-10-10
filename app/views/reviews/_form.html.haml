@@ -1,0 +1,17 @@
+= form_for [@user, @company, @review], html: { class: 'form-sign-up-log-in' } do |f|
+  .star-rating.big-stars
+    %fieldset
+      = f.radio_button :stars, 5, id: 'star5'
+      = f.label :stars, for: 'star5'
+      = f.radio_button :stars, 4, id: 'star4'
+      = f.label :stars, for: 'star4'
+      = f.radio_button :stars, 3, id: 'star3'
+      = f.label :stars, for: 'star3'
+      = f.radio_button :stars, 2, id: 'star2'
+      = f.label :stars, for: 'star2'
+      = f.radio_button :stars, 1, id: 'star1'
+      = f.label :stars, for: 'star1'
+  = f.text_area :content, class: 'rating-textarea', placeholder: 'You can write review up to 500 characters and make sure to rate the Company!'
+  %br
+  = f.submit 'Save', class: 'btn btn-primary btn-lg'
+  = link_to 'Back', :back, class: 'btn btn-default default-button btn-lg'

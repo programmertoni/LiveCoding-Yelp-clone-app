@@ -130,4 +130,22 @@ describe UsersController do
 
   end
 
+  describe 'GET #reviews' do
+    let!(:owner)    { Fabricate(:user, role: 'owner') }
+
+    context 'when user is logged in' do
+      before(:example) { session[:user_id] = owner.id }
+
+      it 'displays all the users reviews' do
+        # This is creating more than one user for reason I don't know
+      end
+      it 'orders review by newest first'
+      it 'does not display other user review'
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects_to login page'
+    end
+  end
+
 end

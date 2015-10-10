@@ -3,7 +3,8 @@ class CompaniesController < ApplicationController
   before_action :require_same_user
 
   def index
-    @companies = Company.all.order(name: :asc)
+    @user      = User.find(current_user.id)
+    @companies = @user.companies.order(name: :asc)
   end
 
   def new
@@ -41,6 +42,7 @@ class CompaniesController < ApplicationController
     Company.find(params[:id]).destroy
     redirect_to user_companies_path(@user)
   end
+
 
   private
 

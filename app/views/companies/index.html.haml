@@ -36,7 +36,7 @@
       .row
         %br
         %div 
-          -# = "#{company.city.name}, #{company.city.country}"
+          = "#{company.city.name}, #{company.city.country}"
 
         %br
         = link_to 'Edit', edit_user_company_path(current_user, company),

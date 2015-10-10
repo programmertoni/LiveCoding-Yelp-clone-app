@@ -1,0 +1,32 @@
+%h1.text-center.large-heading My reviews
+%br
+
+.row
+  = render 'shared/left_navigation'
+  .col-md-9
+    - @reviews.each do |review|
+      .review
+        .row.col-md-12
+          %span.cl-effect-12
+            = link_to shorten_full_name(review.user.full_name), '#'
+          wrote a review for
+          %span.cl-effect-12
+            = link_to review.company.name, '#'
+          %span.pull-right.time-ago= fa_icon 'clock-o', text: "#{time_ago_in_words(review.created_at)} ago"
+        .row.review-stars.col-md-12
+          - full_star_icons = review.stars
+          - 5.times do
+            - if full_star_icons > 0
+              = fa_icon 'star'
+              - full_star_icons -= 1
+            - else
+              = fa_icon 'star-o'
+        .row
+          .col-md-8
+            %p
+              = review.content
+        %br
+        %a(href='#' class='btn btn-default default-button') Edit Review
+        %a(href='#' class='btn btn-default default-button') Delete Review
+        %hr
+
