@@ -1,0 +1,5 @@
+= form_tag search_friend_path, class: 'form-inline', method: :get do
+  .form-group
+    = text_field_tag :name, @search_term, placeholder:'Name...', class: 'form-control'
+    = submit_tag 'Search', class: 'btn btn-default default-button'
+

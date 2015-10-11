@@ -70,4 +70,38 @@ describe FriendsController do
 
   end
 
+  describe 'POST #send_request' do
+    let(:user)   { Fabricate(:user, full_name: 'Toni Cesarek') }
+    let(:dadi)   { Fabricate(:user, full_name: 'Dadi Nabaladi') }
+    let(:marjan) { Fabricate(:user, full_name: 'Marjan Dzmancek') }
+    let(:alenka) { Fabricate(:user, full_name: 'Alenka Dzmancek') }
+
+    context 'when user is logged in' do
+      it 'redirects to find friend page' do
+        session[:user_id] = user.id
+        post :send_request, user_id: user.id, id: dadi.id
+        expect(response).to redirect_to(find_friend_path)
+      end
+
+      it 'creates two rows for current_user and friend' do
+        session[:user_id] = user.id
+        post :send_request, user_id: user.id, id: dadi.id
+        expect(Friend.all.count).to eq(2)
+      end
+
+      it 'cannot create friend request as another use' do
+        session[:user_id] = user.id
+        post :send_request, user_id: marjan.id, id: dadi.id
+        expect(Friend.all.count).to eq(0)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        post :send_request, user_id: marjan.id, id: dadi.id
+        expect(response).to redirect_to(login_path)
+      end
+    end
+  end
+
 end

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     resources :companies, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :reviews, only: [:new, :create, :edit, :update, :destroy]
     end
+
+    resources :friends, only: [] do
+      post 'send-request', on: :member
+    end
   end
 
   resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
