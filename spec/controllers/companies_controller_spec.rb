@@ -122,6 +122,22 @@ describe CompaniesController do
     end
   end
 
+  describe 'GET #show' do
+      let!(:owner)     { Fabricate(:user, role: 'owner') }
+      let!(:company)   { Fabricate(:company, 
+                                    name: 'Zelot Factory',
+                                    user_id: owner.id) }
+    it 'assigns @company' do
+      get :show, user_id: owner.id, id: company.id
+      expect(assigns[:company]).to eq(Company.find(company.id))
+    end
+
+    it 'assigns @reviews' do
+      get :show, user_id: owner.id, id: company.id
+      expect(assigns[:reviews]).to eq([])
+    end
+  end
+
   describe 'GET #edit' do
     let(:owner)   { Fabricate(:user, role: 'owner') }
     let(:company) { Fabricate(:company, user_id: owner.id) }

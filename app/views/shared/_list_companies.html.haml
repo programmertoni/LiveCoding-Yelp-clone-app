@@ -3,8 +3,7 @@
     .row
       .col-md-5
         %span.cl-effect-12
-          %a(href='#' class='company-name')
-            = company.name
+          = link_to company.name, user_company_path(company.owner, company), class: 'company-name'
         .col-md-12.company-stars
           - company.categories.each do |category|
             = link_to category.title, category_path(category), class: 'label label-primary'

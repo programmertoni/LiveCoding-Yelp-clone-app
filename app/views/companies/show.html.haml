@@ -1,0 +1,75 @@
+%h1.large-heading.text-center Company
+.text-center
+  - if current_user.reviews.pluck(:company_id).include?(@company.id)
+    = link_to 'Write a review', '#', class: 'btn btn-primary disabled'
+  - else
+    = link_to 'Write  a Review', new_user_company_review_path(@company.owner, @company), class: 'btn btn-primary'
+.company
+  %br
+  .row
+    .col-md-6
+      %h1
+        = @company.name
+      .col-md-7
+        .col-md-12.company-stars
+          - @company.categories.each do |category|
+            = link_to category.title, category_path(category), class: 'label label-primary'
+        .average-stars.col-md-12.company-stars
+          - full_stars = average_rating(@company)
+          - 5.times do
+            - if full_stars > 0
+              = fa_icon 'star'
+              - full_stars -= 1
+            - else
+              = fa_icon 'star-o'
+          %div.company-reviews
+            = "#{@company.reviews.count} Reviews"
+        .col-md-12.eur.eur-all
+          - full_euro_icons = @company.price_range
+          - 5.times do
+            - if full_euro_icons > 0
+              = fa_icon 'eur', class: 'eur-full'
+              - full_euro_icons -= 1
+            - else
+              = fa_icon 'eur', class: 'eur-empty'
+      - @reviews.each do |review|
+        .review
+          .row.col-md-12
+            %span.cl-effect-12
+              = link_to shorten_full_name(review.user.full_name), '#'
+            wrote a review for
+            %span.cl-effect-12
+              = link_to @company.name, user_company_path(@company.owner, @company)
+            %div.time-ago= fa_icon 'clock-o', text: "#{time_ago_in_words(review.updated_at)} ago"
+          .row.review-stars.col-md-12
+            - full_stars = review.stars.to_i
+            - 5.times do
+              - if full_stars > 0
+                = fa_icon 'star'
+                - full_stars -= 1
+              - else
+                = fa_icon 'star-o'
+          .row
+            .col-md-12
+              %p
+                = review.content
+          .row
+            .col-md-12
+              %p.light_brown Was this review?
+          .row
+            .col-md-12
+              %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'lightbulb-o', text: 'useful'
+              %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'smile-o', text: 'funny'
+              %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'empire', text: 'cool'
+              %a(href='#' class='btn btn-primary pull-right')= fa_icon 'flag', text: 'flag'
+
+          %hr
+    .col-md-6
+      .company-google-map
+        %iframe{:frameborder => "0", :height => "443", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "https://maps.google.com/maps?hl=en&q=Pariser Platz, 10117 Berlin&ie=UTF8&t=terrain&z=6&iwloc=B&output=embed", :width => "540"}
+          %div
+            %small
+              %a{:href => "http://embedgooglemaps.com"} embedgooglemaps.com
+          %div
+            %small
+              %a{:href => "http://premiumlinkgenerator.com/keep2share-cc"} keep2share premium link generator

@@ -166,7 +166,7 @@ describe ReviewsController do
 
     context 'when user is logged in' do
       let(:company)   { Fabricate(:company) }
-      let(:company_1) { Fabricate(:company) }
+      let(:company_1) { Fabricate(:company, created_at: 2.minutes.from_now) }
 
       it 'assigns @companies' do
         session[:user_id] = user.id
@@ -174,7 +174,11 @@ describe ReviewsController do
         expect(assigns[:companies]).to match_array([company, company_1])
       end
 
-      it 'orders companies by the review count'
+      it 'should be ordered newest company first' do
+        session[:user_id] = user.id
+        get :listed_companies
+        expect(assigns[:companies]).to eq([company_1, company])
+      end
     end
 
     context 'when user is not logged in' do

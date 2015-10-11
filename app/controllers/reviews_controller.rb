@@ -49,7 +49,7 @@ class ReviewsController < ApplicationController
   end
 
   def listed_companies
-    @companies = Company.all
+    @companies = Company.all.order(created_at: :desc)
   end
 
   def recent

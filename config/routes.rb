@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get 'reviews',    on: :member
     get 'my-friends', on: :member
 
-    resources :companies, only: [:index, :new, :create, :edit, :update, :destroy] do
+    resources :companies, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :reviews, only: [:new, :create, :edit, :update, :destroy]
     end
 

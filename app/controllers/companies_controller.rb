@@ -1,10 +1,15 @@
 class CompaniesController < ApplicationController
-  before_action :require_owner_or_admin?
-  before_action :require_same_user
+  before_action :require_owner_or_admin?, except: [:show]
+  before_action :require_same_user,       except: [:show]
 
   def index
     @user      = User.find(current_user.id)
     @companies = @user.companies.order(name: :asc)
+  end
+
+  def show
+    @company = Company.find(params[:id])
+    @reviews = @company.reviews
   end
 
   def new
