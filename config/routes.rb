@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   get  '/search-friend',    to: 'friends#search'
 
   resources :users, only: [:create, :edit, :update] do
-    member do
-      get 'reviews'
-    end
+    get 'reviews',    on: :member
+    get 'my-friends', on: :member
+
     resources :companies, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :reviews, only: [:new, :create, :edit, :update, :destroy]
     end

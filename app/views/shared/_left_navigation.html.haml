@@ -5,6 +5,8 @@
         = link_to 'Settings', edit_user_path(current_user)
       %li(role='presentation' class="#{cp(reviews_user_path(current_user))}")
         = link_to 'Reviews', reviews_user_path(current_user)
+      %li(role='presentation' class="#{cp(my_friends_user_path(current_user))}")
+        = link_to 'My Friends', my_friends_user_path(current_user, friends: 'all')
       - if owner? || admin?
         %li(role='presentation' class="#{cp(user_companies_path(current_user))}")
           = link_to 'My Companies', user_companies_path(current_user)

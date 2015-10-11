@@ -38,6 +38,18 @@ class UsersController < ApplicationController
     @reviews = @user.reviews
   end
 
+  def my_friends
+    @num_of_friends         = current_user.num_of_friends
+    @num_of_pending_friends = current_user.num_of_pending_friends
+    @num_of_blocked_friends = current_user.num_of_blocked_friends
+
+    case
+    when params[:friends] == 'all'     then @friends         = current_user.all_friends
+    when params[:friends] == 'pending' then @pending_friends = current_user.pending_friends
+    when params[:friends] == 'blocked' then @blocked_friends = current_user.blocked_friends
+    end
+  end
+
   private
 
   def user_params

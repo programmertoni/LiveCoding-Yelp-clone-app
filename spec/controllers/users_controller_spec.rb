@@ -148,4 +148,13 @@ describe UsersController do
     end
   end
 
+  describe 'GET #my_friends' do
+
+    context 'when user is logged in' do
+    end
+
+    context 'when user is not logged in'
+
+  end
+
 end
