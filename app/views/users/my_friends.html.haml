@@ -10,37 +10,40 @@
       %li(role='presentation' class="#{'active' if params[:friends] == 'pending'}")
         = link_to "Pending (#{@num_of_pending_friends})", my_friends_user_path(current_user, friends: 'pending')
       %li(role='presentation' class="#{'active' if params[:friends] == 'blocked'}")
-        = link_to "Blocked & Rejected (#{@num_of_blocked_friends})", my_friends_user_path(current_user, friends: 'blocked')
+        = link_to "Blocked (#{@num_of_blocked_friends})", my_friends_user_path(current_user, friends: 'blocked')
       %br
     %ul.list-of-friends
-      %li
-        - if params[:friends] == 'all'
-          %span.cl-effect-12
-            - @friends.each do |user|
+      - if params[:friends] == 'all'
+        - if @friends.empty?
+          %br
+          = link_to 'Find a friend', find_friend_path, class: 'btn btn-primary'
+        - @friends.each do |user|
+          %li
+            %span.cl-effect-12
               = link_to '#' do
                 = fa_icon 'child', text: user.full_name
               %span(class='pull-right')
                 = link_to '#', class: 'green smaller-icon' do
                   =fa_icon 'envelope-o', text: 'send mail'
-                = link_to '#', class: 'smaller-icon' do
+                = link_to block_user_path(current_user, user), class: 'smaller-icon', method: :post do
                   =fa_icon 'ban', text: 'block'
-      %li
-        - if params[:friends] == 'pending'
-          %span.cl-effect-12
-            - @pending_friends.each do |user|
+      - if params[:friends] == 'pending'
+        - @pending_friends.each do |user|
+          %li
+            %span.cl-effect-12
               = link_to '#' do
                 = fa_icon 'street-view', text: user.full_name
               %span(class='pull-right')
-                = link_to '#', class: 'smaller-icon green' do
+                = link_to add_friend_from_pending_path(current_user, user), class: 'smaller-icon green', method: :post do
                   =fa_icon 'check', text: 'Accept'
-                = link_to '#', class: 'smaller-icon' do
+                = link_to reject_friendship_path(current_user, user), class: 'smaller-icon', method: :post do
                   =fa_icon 'trash-o', text: 'Reject'
-      %li
-        - if params[:friends] == 'blocked'
-          %span.cl-effect-12
-            - @blocked_friends.each do |user|
+      - if params[:friends] == 'blocked'
+        - @blocked_friends.each do |user|
+          %li
+            %span.cl-effect-12
               = link_to '#' do
                 = fa_icon 'user-secret', text: user.full_name
               %span(class='pull-right')
-                = link_to '#', class: 'smaller-icon green' do
+                = link_to add_friend_from_blocked_path(current_user, user), class: 'smaller-icon green', method: :post do
                   =fa_icon 'user-plus', text: 'Add Friend'

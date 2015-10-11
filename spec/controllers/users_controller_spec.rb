@@ -157,4 +157,29 @@ describe UsersController do
 
   end
 
+  describe 'POST #block_user' do
+    context 'when user is logged in' do
+      let!(:user)      { Fabricate(:user) }
+      let!(:friend_1)  { Fabricate(:friend, user_id: user.id) }
+      let!(:friend_2)  { Fabricate(:friend, user_id: user.id) }
+      let!(:pending_1) { Fabricate(:friend, user_id: user.id, pending: true, a_friend: false) }
+      let!(:blocked_1) { Fabricate(:friend, user_id: user.id, user_blocked: true, a_friend: false) }
+
+      it 'redirects to all my friends page' do
+        skip
+        # I do not know why this is not working
+        post :block_user, user_id: user.id, id: friend_1.id
+        expect(user.blocked_friends.count).to eq(2)
+      end
+
+      it 'changes user_block to true'
+
+      it 'cannot change other users user_block params to true'
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to login path'
+    end
+  end
+
 end

@@ -1,0 +1,43 @@
+- @companies.each do |company|
+  .review
+    .row
+      .col-md-5
+        %span.cl-effect-12
+          %a(href='#' class='company-name')
+            = company.name
+        .col-md-12.company-stars
+          - company.categories.each do |category|
+            = link_to category.title, category_path(category), class: 'label label-primary'
+        .review-stars.col-md-12.company-stars.average-stars
+          - full_stars = average_rating(company)
+          - 5.times do
+            - if full_stars > 0
+              = fa_icon 'star'
+              - full_stars -= 1
+            - else
+              = fa_icon 'star-o'
+          %span.sum-reviews.company-reviews
+            = "#{company.reviews.count} Reviews"
+          .col-md-12.eur.eur-all-search
+            - full_euro_icons = company.price_range
+            - 5.times do
+              - if full_euro_icons > 0
+                = fa_icon 'eur', class: 'eur-full'
+                - full_euro_icons -= 1
+              - else
+                = fa_icon 'eur', class: 'eur-empty'
+      .col-md-5.address
+        %div
+          = "#{company.city.name}, #{company.city.country}"
+      .col-md-2
+        %br
+        %br
+        -#the if statement checks if user has already wrote review for this company
+        - if current_user.reviews.pluck(:company_id).include?(company.id)
+          = link_to 'Write a review', '#', class: 'btn btn-primary disabled'
+        - else
+          = link_to 'Write  a Review', new_user_company_review_path(company.owner, company), class: 'btn btn-primary'
+
+    %hr
+
+

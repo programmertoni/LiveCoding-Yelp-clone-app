@@ -1,8 +1,13 @@
 class CategoriesController < ApplicationController
-  before_action :require_admin
+  before_action :require_admin, except: [:show]
 
   def index
     @categories = Category.all.order(title: :asc)
+  end
+
+  def show
+    @category   = Category.find(params[:id])
+    @companies = @category.companies
   end
 
   def new

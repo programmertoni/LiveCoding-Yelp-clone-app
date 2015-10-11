@@ -50,6 +50,32 @@ class UsersController < ApplicationController
     end
   end
 
+  def block_user
+    user = Friend.find_by(user_id: params[:user_id], id_of_friend: params[:id])
+    user.update(user_blocked: true, a_friend: false)
+    redirect_to my_friends_user_path(current_user, friends: 'all')
+  end
+
+  def add_friend_from_blocked
+    user = Friend.find_by(user_id: params[:user_id], id_of_friend: params[:id])
+    user.update(user_blocked: false, a_friend: true)
+    redirect_to my_friends_user_path(current_user, friends: 'blocked')
+  end
+
+  def add_friend_from_pending
+    user   = Friend.find_by(user_id: params[:user_id], id_of_friend: params[:id])
+    friend = Friend.find_by(user_id: params[:id], id_of_friend: params[:user_id])
+
+    user.update(a_friend: true, pending: false)
+    friend.update(a_friend: true)
+    redirect_to my_friends_user_path(current_user, friends: 'pending')
+  end
+
+  def reject_friendship
+    Friend.find_by(user_id: params[:user_id], id_of_friend: params[:id]).destroy
+    redirect_to my_friends_user_path(current_user, friends: 'pending')
+  end
+
   private
 
   def user_params
