@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :require_user
-  before_action :require_same_user, only: [:index, :show]
+  before_action :require_same_user, only: [:index]
 
   def index
     @number_of_unread_msg    = current_user.num_of_unread_messages
@@ -26,6 +26,7 @@ class MessagesController < ApplicationController
   end
 
   def create
+    @friend            = User.find(params[:user_id])
     @message           = Message.new(message_params)
     @message.user_id   = params[:user_id]
     @message.friend_id = current_user.id
@@ -40,7 +41,11 @@ class MessagesController < ApplicationController
 
   def destroy
     Message.find(params[:id]).destroy
-    redirect_to :back
+    if params[:from_show_page] == 'true'
+      redirect_to user_messages_path(current_user, page: 'unread')
+    else
+      redirect_to :back
+    end
   end
 
   def important
