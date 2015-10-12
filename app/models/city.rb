@@ -7,4 +7,13 @@ class City < ActiveRecord::Base
 
   scope :list_all, -> { all.order(name: :asc) }
 
+  geocoded_by      :address
+  after_validation :geocode
+
+  private
+
+  def address
+    "#{name}, {country}"
+  end
+
 end

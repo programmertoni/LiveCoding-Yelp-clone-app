@@ -17,6 +17,7 @@ gem 'pg',                  '0.18.2'
 gem 'puma',                '2.13.4'
 gem 'gmaps4rails',         '2.1.2'
 gem 'underscore-rails',    '1.8.3'
+gem 'geocoder',            '1.2.11'
 
 group :development do
   gem 'better_errors',      '2.1.1'

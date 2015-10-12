@@ -10,6 +10,14 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find(params[:id])
     @reviews = @company.reviews
+    @city    = @company.city
+
+    @hash = Gmaps4rails.build_markers(@city) do |city, marker|
+      marker.lat city.latitude
+      marker.lng city.longitude
+      marker.infowindow "#{@company.name}, City: #{@city.name}, Country: #{@city.country}"
+      marker.title @city.name
+    end
   end
 
   def new

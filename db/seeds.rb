@@ -12,9 +12,9 @@
               role: %w(user owner).sample)
 end
 
-ljubljana = City.create(name: 'Ljubljana', country: 'Slovenia')
-london    = City.create(name: 'London', country: 'United Kindom')
-berlin    = City.create(name: 'Berlin', country: 'Germany')
+City.create(name: 'Dublin', country: 'Ireland')
+City.create(name: 'London', country: 'United Kindom')
+City.create(name: 'New York', country: 'United States')
 
 Category.create(title: 'Spa')
 Category.create(title: 'Hotel')
