@@ -18,6 +18,7 @@ gem 'puma',                '2.13.4'
 gem 'gmaps4rails',         '2.1.2'
 gem 'underscore-rails',    '1.8.3'
 gem 'geocoder',            '1.2.11'
+gem 'faker',               '1.5.0'
 
 group :development do
   gem 'better_errors',      '2.1.1'
@@ -38,9 +39,6 @@ group :development, :test do
   gem 'pry',          '0.10.1'
   gem 'pry-nav',      '0.2.4'
   gem 'rspec-rails',  '3.3.3'
-  gem 'faker',        '1.5.0'
-
-
 end
 
 group :production do
