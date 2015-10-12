@@ -1,0 +1,10 @@
+.form-sign-up-log-in
+  = bootstrap_form_for [@user, @company], layout: :horizontal, label_col: 'col-sm-4', control_col: 'col-sm-7' do |f|
+    = f.text_field :name,
+                    autofocus: true,
+                    placeholder: 'Write name of your Company...'
+
+    = f.collection_select :city_id, City.list_all, :id, :name, prompt: 'Select City...'
+    = f.select :price_range, [['€ (for anyone)', 1], ['€€ (for rich people)', 2], ['€€€ (for richer people)', 3], ['€€€€ (you can\'t afford that)', 4], ['€€€€€ (Bill Gates only section)', 5]], prompt: 'Select price range...'
+    = f.collection_select :category_ids, Category.list_all, :id, :title, { label: 'Categories' }, {  multiple: true }
+    = f.submit @company.new_record? ? 'Add Company' : 'Save', class: 'btn btn-primary submit-form-button'

@@ -12,4 +12,10 @@ module ApplicationHelper
     'active' if current_page?(path)
   end
 
+  def average_rating(company)
+    company_reviews = Review.where(company: company)
+    return 0 if company_reviews.empty?
+    ((company_reviews.pluck(:stars).inject{ |sum, el| sum + el }.to_f) / company_reviews.size).round
+  end
+
 end

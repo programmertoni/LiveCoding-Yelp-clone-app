@@ -1,0 +1,14 @@
+%h1.text-center.large-heading Search Results
+%h5.text-center for
+.row
+  .search-friend
+    = render 'form'
+.row
+  .col-md-8.col-md-offset-2
+    %ul.list-of-friends
+      - @search_result.each do |user|
+        %li
+          %span.cl-effect-12
+            %a(href='#')= fa_icon 'user', text: "#{user.full_name}"
+            %span(class='pull-right')
+              %a(href='#' class='smaller-icon green')= fa_icon 'paper-plane-o', text: 'Friend Request'

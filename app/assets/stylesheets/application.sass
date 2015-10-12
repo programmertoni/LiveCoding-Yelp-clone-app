@@ -41,6 +41,11 @@ $input-border-focus: $brown
 $input-color-placeholder: $brown
 $btn-default-border: $brown
 
+// alert colors
+$state-danger-text: red
+$state-danger-bg: white
+$state-danger-border: darken($state-danger-bg, 5%)
+
 // dropdowns
 $dropdown-bg: #fff
 $nav-link-hover-bg: rgba($green, 0.8)
@@ -270,9 +275,10 @@ a.smaller-icon
   li:last-child
     border-bottom: none
 
+#message_content.rating-textarea,
 .rating-textarea
   background-color: rgba(#fff, 0.0)
-  border: 2px solid $brown
+  border: 1px solid $brown
   border-radius: 5px
   width: 700px
   height: 400px
@@ -281,8 +287,10 @@ a.smaller-icon
 .big-stars
   font-size: 150%
 
-.fa-user-secret
-  color: desaturate(lighten($green, 16%), 30%)
+.fa-user-secret,
+.fa-child,
+.fa-street-view
+  color: desaturate(lighten($green, 3%), 1%)
 
 .nav.nav-tabs
   border-color: $brown

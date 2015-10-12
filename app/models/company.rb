@@ -8,5 +8,6 @@ class Company < ActiveRecord::Base
 
   validates :name,        presence: true
   validates :price_range, presence: true
+  validates :city_id,     presence: true
 
 end

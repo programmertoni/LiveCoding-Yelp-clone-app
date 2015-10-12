@@ -1,0 +1,15 @@
+%h1.text-center.large-heading All Cities
+%br
+
+.row
+  = render 'shared/left_navigation'
+  .col-md-6
+    %ul.list-of-categories
+      - @cities.each do |city|
+        %li
+          = city.name
+          %span(class='pull-right cl-effect-12')
+            = link_to edit_city_path(city), class: 'category-icon' do
+              = fa_icon 'edit', text: 'edit'
+            = link_to city_path(city), method: :delete, class: 'category-icon', data: { confirm: 'Do you want to delete this City?' } do
+              = fa_icon 'close', text: 'delete'

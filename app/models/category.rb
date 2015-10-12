@@ -5,4 +5,6 @@ class Category < ActiveRecord::Base
 
   validates :title, presence: true
 
+  scope :list_all, -> { all.order(title: :asc) }
+
 end

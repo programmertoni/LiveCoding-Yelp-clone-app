@@ -39,9 +39,9 @@
                 %span.glyphicon.glyphicon-star
                   %span 12
             %li
-              %a(href='#') About Me
+              = link_to 'About Me', reviews_user_path(current_user)
             %li
-              %a(href='#') Account Settings
+              = link_to 'Account Settings', edit_user_path(current_user)
             %li(role='separator' class='divider')
             %li
               = link_to 'Log Out', logout_path
@@ -50,14 +50,14 @@
         %li(role='presentation' class="#{cp(root_path)}")
           = link_to 'Home', root_path
         - if logged_in?
-          %li(role='presentation')
-            %a(href='#') About me
-          %li(role='presentation')
-            %a(href='#') Write a review
-          %li(role='presentation')
-            %a(href='#') Find friends
-          %li(role='presentation')
-            %a(href='#') Messages
+          %li(role='presentation' class="#{cp(reviews_user_path(current_user))}")
+            = link_to 'About me', reviews_user_path(current_user)
+          %li(role='presentation' class="#{cp(listed_companies_path)}")
+            = link_to 'Write a review', listed_companies_path
+          %li(role='presentation' class="#{cp(find_friend_path)}")
+            = link_to 'Find Friends', find_friend_path
+          %li(role='presentation' class="#{cp(user_messages_path(current_user, page: 'unread'))}")
+            = link_to 'Messages', user_messages_path(current_user, page: 'unread')
         %li(role='presentation' class="#{cp(about_us_path)}")
           = link_to 'About us', about_us_path
         %li(role='presentation' class="#{cp(help_path)}")

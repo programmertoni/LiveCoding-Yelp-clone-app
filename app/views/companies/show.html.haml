@@ -1,0 +1,49 @@
+%h1.large-heading.text-center Company
+.text-center
+  - if current_user.reviews.pluck(:company_id).include?(@company.id)
+    = link_to 'Write a review', '#', class: 'btn btn-primary disabled'
+  - else
+    = link_to 'Write  a Review', new_user_company_review_path(@company.owner, @company), class: 'btn btn-primary'
+.company
+  %br
+  .row
+    .col-md-6
+      %h1
+        = @company.name
+      %p
+        = "#{@city.name}, #{@city.country}"
+      .col-md-12.company-stars
+        - @company.categories.each do |category|
+          = link_to category.title, category_path(category), class: 'label label-primary'
+      .average-stars.col-md-12.company-stars
+        - full_stars = average_rating(@company)
+        - 5.times do
+          - if full_stars > 0
+            = fa_icon 'star'
+            - full_stars -= 1
+          - else
+            = fa_icon 'star-o'
+        %div.company-reviews
+          = "#{@company.reviews.count} Reviews"
+      .col-md-12.eur.eur-all
+        - full_euro_icons = @company.price_range
+        - 5.times do
+          - if full_euro_icons > 0
+            = fa_icon 'eur', class: 'eur-full'
+            - full_euro_icons -= 1
+          - else
+            = fa_icon 'eur', class: 'eur-empty'
+      .text-center
+        - if @reviews.any?
+          %h3 Reviews
+          %h5 for this Company
+        - else
+          %h4 No Reviews for this Company
+      - @reviews.each do |review|
+        .review
+        = render 'shared/review', review: review
+    .col-md-6
+      %div(style='width: 540px')
+        %div(id='map' style='width: 540px; height: 400px')
+
+= render 'shared/custom_gmap'
