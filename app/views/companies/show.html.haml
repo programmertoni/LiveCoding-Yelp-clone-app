@@ -65,11 +65,13 @@
 
           %hr
     .col-md-6
-      .company-google-map
-        %iframe{:frameborder => "0", :height => "443", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "https://maps.google.com/maps?hl=en&q=Pariser Platz, 10117 Berlin&ie=UTF8&t=terrain&z=6&iwloc=B&output=embed", :width => "540"}
-          %div
-            %small
-              %a{:href => "http://embedgooglemaps.com"} embedgooglemaps.com
-          %div
-            %small
-              %a{:href => "http://premiumlinkgenerator.com/keep2share-cc"} keep2share premium link generator
+      %div(style='width: 540px')
+        %div(id='map' style='width: 540px; height: 400px')
+      -# .company-google-map
+      -#   %iframe{:frameborder => "0", :height => "443", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "https://maps.google.com/maps?hl=en&q=Pariser Platz, 10117 Berlin&ie=UTF8&t=terrain&z=6&iwloc=B&output=embed", :width => "540"}
+      -#     %div
+      -#       %small
+      -#         %a{:href => "http://embedgooglemaps.com"} embedgooglemaps.com
+      -#     %div
+      -#       %small
+      -#         %a{:href => "http://premiumlinkgenerator.com/keep2share-cc"} keep2share premium link generator
