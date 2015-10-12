@@ -41,36 +41,7 @@
           %h4 No Reviews for this Company
       - @reviews.each do |review|
         .review
-          .row.col-md-12
-            %span.cl-effect-12
-              = link_to shorten_full_name(review.user.full_name), '#'
-            wrote a review for
-            %span.cl-effect-12
-              = link_to @company.name, user_company_path(@company.owner, @company)
-            %div.time-ago= fa_icon 'clock-o', text: "#{time_ago_in_words(review.updated_at)} ago"
-          .row.review-stars.col-md-12
-            - full_stars = review.stars.to_i
-            - 5.times do
-              - if full_stars > 0
-                = fa_icon 'star'
-                - full_stars -= 1
-              - else
-                = fa_icon 'star-o'
-          .row
-            .col-md-12
-              %p
-                = review.content
-          .row
-            .col-md-12
-              %p.light_brown Was this review?
-          .row
-            .col-md-12
-              %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'lightbulb-o', text: 'useful'
-              %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'smile-o', text: 'funny'
-              %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'empire', text: 'cool'
-              %a(href='#' class='btn btn-primary pull-right')= fa_icon 'flag', text: 'flag'
-
-          %hr
+        = render 'shared/review', review: review
     .col-md-6
       %div(style='width: 540px')
         %div(id='map' style='width: 540px; height: 400px')

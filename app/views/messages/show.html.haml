@@ -1,0 +1,19 @@
+%h1.text-center.large-heading Message
+%h3.text-center
+  = "from #{@friend.full_name.titleize}"
+
+.row
+  .col-md-10.col-md-offset-1
+    %h3(class='open-sans text-center')
+      = @message.title
+    %p
+      = @message.content
+    %br
+    %a(href='#' class='btn btn-primary')= fa_icon 'share', text: 'reply'
+    %a(href='#' class='btn btn-primary')= fa_icon 'tag', text: 'important'
+    %a(href='#' class='btn btn-primary')= fa_icon 'trash-o', text: 'delete'
+
+%br
+.text-center
+  = link_to 'Back', :back, class: 'btn btn-lg btn-default default-button'
+

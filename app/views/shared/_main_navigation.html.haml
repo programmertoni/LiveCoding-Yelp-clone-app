@@ -56,8 +56,8 @@
             = link_to 'Write a review', listed_companies_path
           %li(role='presentation' class="#{cp(find_friend_path)}")
             = link_to 'Find Friends', find_friend_path
-          %li(role='presentation')
-            %a(href='#') Messages
+        %li(role='presentation' class="#{cp(user_messages_path(current_user, page: 'unread'))}")
+          = link_to 'Messages', user_messages_path(current_user, page: 'unread')
         %li(role='presentation' class="#{cp(about_us_path)}")
           = link_to 'About us', about_us_path
         %li(role='presentation' class="#{cp(help_path)}")

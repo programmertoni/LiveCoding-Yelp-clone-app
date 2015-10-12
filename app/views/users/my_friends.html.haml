@@ -27,7 +27,7 @@
                   =fa_icon 'envelope-o', text: 'send mail'
                 = link_to block_user_path(current_user, user), class: 'smaller-icon', method: :post do
                   =fa_icon 'ban', text: 'block'
-      - if params[:friends] == 'pending'
+      - elsif params[:friends] == 'pending'
         - @pending_friends.each do |user|
           %li
             %span.cl-effect-12
@@ -38,7 +38,7 @@
                   =fa_icon 'check', text: 'Accept'
                 = link_to reject_friendship_path(current_user, user), class: 'smaller-icon', method: :post do
                   =fa_icon 'trash-o', text: 'Reject'
-      - if params[:friends] == 'blocked'
+      - elsif params[:friends] == 'blocked'
         - @blocked_friends.each do |user|
           %li
             %span.cl-effect-12

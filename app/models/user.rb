@@ -41,4 +41,29 @@ class User < ActiveRecord::Base
     blocked_friends.pluck(:id).count
   end
 
+  def unread_messages
+    Message.where(user_id: self.id, message_read: false)
+  end
+
+  def num_of_unread_messages
+    unread_messages.pluck(:id).count
+  end
+
+  def read_messages
+    Message.where(user_id: self.id, message_read: true, important: false)
+  end
+
+  def num_of_read_messages
+    read_messages.pluck(:id).count
+  end
+
+  def important_messages
+    Message.where(user_id: self.id, message_read: true, important: true)
+  end
+
+  def num_of_important_messages
+    important_messages.pluck(:id).count
+  end
+
+
 end

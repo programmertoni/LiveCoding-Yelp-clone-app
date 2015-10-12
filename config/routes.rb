@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get  '/find-friend',      to: 'friends#index'
   get  '/search-friend',    to: 'friends#search'
 
+  # adding, blocking and rejecting Friends
   post '/users/:user_id/friend/:id/block_user', to: 'users#block_user', as: 'block_user'
   post '/users/:user_id/friend/:id/add_friend_from_blocked', to: 'users#add_friend_from_blocked', as: 'add_friend_from_blocked'
   post '/users/:user_id/friend/:id/add_friend_from_pending', to: 'users#add_friend_from_pending', as: 'add_friend_from_pending'
@@ -19,6 +20,13 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :edit, :update] do
     get 'reviews',    on: :member
     get 'my-friends', on: :member
+
+    resources :messages, only: [:index, :show, :new, :create, :destroy] do
+      member do
+        post 'important'
+        post 'unimportant'
+      end
+    end
 
     resources :companies, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :reviews, only: [:new, :create, :edit, :update, :destroy]

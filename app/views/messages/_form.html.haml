@@ -1,0 +1,5 @@
+= bootstrap_form_for [@friend, @message], html: { class: 'form-sign-up-log-in' } do |f|
+  = f.text_field :title, placeholder: 'Write a title...', autofocus: true
+  = f.text_area :content, class: 'rating-textarea'
+  = f.submit 'Send', class: 'btn btn-primary btn-lg'
+  = link_to 'Back', :back, class: 'btn btn-default default-button btn-lg'

@@ -190,13 +190,17 @@ describe ReviewsController do
   end
 
   describe 'GET #recent' do
+    let(:review_1) { Fabricate(:review) }
+    let(:review_2) { Fabricate(:review, created_at: 1.minute.from_now) }
 
-    context 'when user is logged in' do
-      it 'renders the home page' do
-        session[:user_id] = Fabricate(:user).id
-        get :recent
-        expect(response).to render_template(:recent)
-      end
+    it 'renders the home page' do
+      get :recent
+      expect(response).to render_template(:recent)
+    end
+
+    it 'orderes reviews newest first' do
+      get :recent
+      expect(assigns[:reviews]).to match_array([review_2, review_1])
     end
 
     context 'when user is not logged in' do

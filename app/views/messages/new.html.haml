@@ -1,0 +1,10 @@
+%h1.text-center.large-heading New Message
+%h3.text-center
+  = "for #{@friend.full_name.titleize}"
+
+.row
+  .col-md-10.col-md-offset-1
+    %br
+    = render 'form'
+%br
+

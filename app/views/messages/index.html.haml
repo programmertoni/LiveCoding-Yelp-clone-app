@@ -1,0 +1,77 @@
+%h1.text-center.large-heading My Messages
+.text-center
+  = link_to 'New message', my_friends_user_path(current_user, friends: 'all'), class: 'btn btn-primary'
+%br
+%br
+
+
+.row
+  .col-md-10.col-md-offset-1
+    %ul(class='nav nav-tabs')
+      %li(role='presentation' class="#{ 'active' if params[:page] == 'unread' }")
+        = link_to "unread (#{current_user.num_of_unread_messages})", user_messages_path(current_user, page: 'unread')
+      %li(role='presentation' class="#{ 'active' if params[:page] == 'read' }")
+        = link_to "read (#{current_user.num_of_read_messages})", user_messages_path(current_user, page: 'read')
+      %li(role='presentation' class="#{ 'active' if params[:page] == 'important' }")
+        = link_to "important (#{current_user.num_of_important_messages})", user_messages_path(current_user, page: 'important')
+      %br
+
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th #
+          %th Friend
+          %th Title
+          %th Actions
+      %tbody
+        - if params[:page] == 'unread'
+          - @messages.each_with_index do |message, indx|
+            - friend = User.find(message.friend_id)
+            %tr
+              %th(scope='row' class='table-padding-cell')
+                = indx + 1
+              %td.table-padding-cell
+                = friend.full_name.titleize
+              %td
+                %span.cl-effect-12
+                  =link_to truncate(message.title, length: 40), user_message_path(friend.id, message.id)
+              %td
+                %span.cl-effect-12
+                  = link_to important_user_message_path(current_user.id, message.id), method: :post do
+                    =fa_icon 'tag', text: 'important'
+                  = link_to user_message_path(current_user.id, message.id), method: :delete do
+                    =fa_icon 'trash-o', text: 'delete'
+        - elsif params[:page] == 'read'
+          - @messages.each_with_index do |message, indx|
+            - friend = User.find(message.friend_id)
+            %tr
+              %th(scope='row' class='table-padding-cell')
+                = indx + 1
+              %td.table-padding-cell
+                = friend.full_name.titleize
+              %td
+                %span.cl-effect-12
+                  =link_to truncate(message.title, length: 40), user_message_path(friend.id, message.id)
+              %td
+                %span.cl-effect-12
+                  = link_to important_user_message_path(current_user.id, message.id), method: :post do
+                    =fa_icon 'tag', text: 'important'
+                  = link_to user_message_path(current_user.id, message.id), method: :delete do
+                    =fa_icon 'trash-o', text: 'delete'
+        - elsif params[:page] == 'important'
+          - @messages.each_with_index do |message, indx|
+            - friend = User.find(message.friend_id)
+            %tr
+              %th(scope='row' class='table-padding-cell')
+                = indx + 1
+              %td.table-padding-cell
+                = friend.full_name.titleize
+              %td
+                %span.cl-effect-12
+                  =link_to truncate(message.title, length: 40), user_message_path(friend.id, message.id)
+              %td
+                %span.cl-effect-12
+                  = link_to unimportant_user_message_path(current_user.id, message.id), method: :post do
+                    =fa_icon 'exchange', text: 'unimportant'
+                  = link_to user_message_path(current_user.id, message.id), method: :delete do
+                    =fa_icon 'trash-o', text: 'delete'

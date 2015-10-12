@@ -79,7 +79,7 @@ describe User do
     let!(:blocked_1) { Fabricate(:friend, user_id: user.id, user_blocked: true, a_friend: false) }
 
     it 'returns blocked friends for current user' do
-      expect(user.blocked_friends.count).to eq(2)
+      expect(user.blocked_friends.count).to eq(1)
     end
   end
 
