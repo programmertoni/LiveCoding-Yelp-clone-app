@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'Admin clicks through the App' do
+feature 'Owner clicks through the App' do
 
-  scenario 'Admin logs in' do
-    set_and_login with: 'Admin Toni', as: 'admin'
+  scenario 'Owner logs in' do
+    set_and_login with: 'Owner Toni', as: 'owner'
     check_if_main_menu_is_working
     check_if_left_menu_is_working
   end
@@ -43,14 +43,6 @@ feature 'Admin clicks through the App' do
     expect(page).to have_content('You have no Companies listed')
     click_link 'Add new Company'
     expect(page).to have_content('€€ (for rich people)')
-    click_link 'All Cities'
-    expect(page).to have_content('Yelp clone app')
-    click_link 'Add new City'
-    expect(page).to have_content('Yelp clone app')
-    click_link 'All Categories'
-    expect(page).to have_content('Yelp clone app')
-    click_link 'Add new Category'
-    expect(page).to have_content('Yelp clone app')
     click_link 'Log Out'
     expect(page).to have_content('You are logged out. We hope to see you soon!')
     expect(page).to have_no_content('About me')
