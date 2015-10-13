@@ -12,11 +12,11 @@ class CompaniesController < ApplicationController
     @reviews      = @company.reviews
     @current_city = @company.city
 
-    @hash = Gmaps4rails.build_markers(@city) do |city, marker|
+    @hash = Gmaps4rails.build_markers(@current_city) do |city, marker|
       marker.lat city.latitude
       marker.lng city.longitude
-      marker.infowindow "#{@company.name}, City: #{@city.name}, Country: #{@city.country}"
-      marker.title @city.name
+      marker.infowindow "#{@company.name}, City: #{@current_city.name}, Country: #{@current_city.country}"
+      marker.title @current_city.name
     end
   end
 
