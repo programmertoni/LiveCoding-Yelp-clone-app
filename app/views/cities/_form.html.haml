@@ -1,5 +1,5 @@
 .form-sign-up-log-in
-  = bootstrap_form_for @city, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-7"  do |f|
+  = bootstrap_form_for @current_city, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-7"  do |f|
     = f.text_field :name,
       label: 'City',
       autofocus: true,
@@ -8,4 +8,4 @@
     = f.text_field :country,
       placeholder: 'Write a name of the Country...'
 
-    = f.submit @city.new_record? ? 'Add City' : 'Save', class: 'btn btn-primary submit-form-button'
+    = f.submit @current_city.new_record? ? 'Add City' : 'Save', class: 'btn btn-primary submit-form-button'

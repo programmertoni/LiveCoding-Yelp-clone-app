@@ -4,7 +4,7 @@ ruby '2.2.3'
 
 gem 'rails',               '4.2.4'
 gem 'bootstrap-sass',      '3.3.5'
-gem 'bootstrap_form',      '2.3.0' # bootstrap-ruby/rails-bootstrap-forms
+gem 'bootstrap_form',      '2.3.0'
 gem "font-awesome-rails",  '4.4.0.0'
 gem 'sass-rails',          '5.0.4'
 gem 'jquery-rails',        '4.0.5'

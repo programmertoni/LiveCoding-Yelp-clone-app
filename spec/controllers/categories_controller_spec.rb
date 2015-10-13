@@ -17,6 +17,12 @@ describe CategoriesController do
       get :show, id: category.id
       expect(assigns[:companies]).to match_array([company_1, company_2])
     end
+
+    it 'assigns @current_category' do
+      get :show, id: category.id
+      expect(assigns[:current_category]).to eq(category)
+    end
+
   end
 
 end

@@ -11,7 +11,7 @@
       %h1
         = @company.name
       %p
-        = "#{@city.name}, #{@city.country}"
+        = "#{@current_city.name}, #{@current_city.country}"
       .col-md-12.company-stars
         - @company.categories.each do |category|
           = link_to category.title, category_path(category), class: 'label label-primary'

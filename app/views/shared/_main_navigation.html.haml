@@ -4,26 +4,7 @@
       %h1 Yelp
       .logo-subheading.bevan clone app
     .col-md-9.col-md-offset-2
-      %form.form-inline
-        .form-group
-          %input(type='text' class='form-control'
-                 placeholder='find business...')
-          %select.form-control
-            %option all citys
-            %option Ljubljana
-            %option Berlin
-            %option Paris
-            %option New york
-            %option Los Angeles
-          %select.form-control
-            %option all categories
-            %option Restrurants
-            %option Travel
-            %option Spa
-            %option Hotels
-            %option Health
-          %button(type='submit' class='btn btn-default default-button')
-            Search
+      = render 'shared/search_form'
     .col-md-1
       - if logged_in?
         %span.dropdown.pull-right

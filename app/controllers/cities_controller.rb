@@ -6,7 +6,7 @@ class CitiesController < ApplicationController
   end
 
   def new
-    @city = City.new
+    @current_city = City.new
   end
 
   def create

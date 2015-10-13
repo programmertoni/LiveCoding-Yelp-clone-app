@@ -249,4 +249,69 @@ describe CompaniesController do
     end
   end
 
+  describe '#search' do
+    let!(:city_1)     { Fabricate(:city) }
+    let!(:city_2)     { Fabricate(:city) }
+    let!(:category_1) { Fabricate(:category) }
+    let!(:category_2) { Fabricate(:category) }
+    let!(:company_1)  { Fabricate(:company, name: 'Nike', city_id: city_1.id) }
+    let!(:company_2)  { Fabricate(:company, name: 'Addidas', city_id: city_2.id) }
+    let!(:company_3)  { Fabricate(:company, name: 'Amidas', city_id: city_1.id) }
+
+    before(:example) do
+      company_1.categories << category_1
+      company_2.categories << category_1
+      company_2.categories << category_2
+    end
+
+    it 'return empy array if no companies are found' do
+      get :search, name: 'Salad & co', city: { city_id: City.first.id.to_s }, category: { category_ids: Category.first.id.to_s } 
+      expect(assigns[:companies]).to eq([])
+    end
+
+    it 'returnes search result indipendent of users inputs case' do
+      get :search, name: 'IdAs', city: { city_id: '' }, category: { category_ids: '' } 
+      expect(assigns[:companies]).to match_array([company_2, company_3])
+    end
+
+    it 'returns all companies if user only hits search without any parameters' do
+      get :search, name: '', city: { city_id: '' }, category: { category_ids: '' } 
+      expect(assigns[:companies]).to match_array([company_1, company_2, company_3])
+    end
+
+    it 'searches through all companies if user only submits name' do
+      get :search, name: 'ike', city: { city_id: '' }, category: { category_ids: '' } 
+      expect(assigns[:companies]).to match_array([company_1])
+    end
+
+    it 'searches throught companies with same city if user fills in name and chooses city' do
+      get :search, name: 'das', city: { city_id: city_1 }, category: { category_ids: '' } 
+      expect(assigns[:companies]).to match_array([company_3])
+    end
+
+    it 'searches through companies with same category if user fills in name and chooses category' do
+      get :search, name: 'das', city: { city_id: '' }, category: { category_ids: category_1.id } 
+      expect(assigns[:companies]).to match_array([company_2])
+    end
+
+    it 'searches throught companies with same city and category if user fills in the whole form' do
+      get :search, name: 'das', city: { city_id: city_2.id }, category: { category_ids: category_1.id } 
+      expect(assigns[:companies]).to match_array([company_2])
+    end
+
+    it 'returns companies in the same city if user only chooses city' do
+      get :search, name: '', city: { city_id: city_1.id }, category: { category_ids: '' } 
+      expect(assigns[:companies]).to match_array([company_1, company_3])
+    end
+
+    it 'returns companies in the same category if user only chooses category' do
+      get :search, name: '', city: { city_id: '' }, category: { category_ids: category_1 } 
+      expect(assigns[:companies]).to match_array([company_1, company_2])
+    end
+
+    it 'returnes company if there is only name submited' do
+      get :search, name: 'das', city: { city_id: '' }, category: { category_ids: '' } 
+      expect(assigns[:companies]).to match_array([company_3, company_2])
+    end
+  end
 end

@@ -1,0 +1,6 @@
+= form_tag search_company_path, class: 'form-inline', method: :get do
+  .form-group
+    = text_field_tag :name, params[:name], class: 'form-control', placeholder: 'find business...'
+    = collection_select :city, :city_id, City.list_all, :id, :name, { prompt: 'All Cities' }, class: 'form-control'
+    = collection_select :category, :category_ids, Category.list_all, :id, :title, { prompt: 'All Categories' }, class: 'form-control'
+    = submit_tag 'Search', class: 'btn btn-default default-button'

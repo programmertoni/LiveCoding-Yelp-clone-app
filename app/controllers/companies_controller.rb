@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
-  before_action :require_owner_or_admin?, except: [:show]
-  before_action :require_same_user,       except: [:show]
+  before_action :require_owner_or_admin?, except: [:show, :search]
+  before_action :require_same_user,       except: [:show, :search]
 
   def index
     @user      = User.find(current_user.id)
@@ -8,9 +8,9 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
-    @reviews = @company.reviews
-    @city    = @company.city
+    @company      = Company.find(params[:id])
+    @reviews      = @company.reviews
+    @current_city = @company.city
 
     @hash = Gmaps4rails.build_markers(@city) do |city, marker|
       marker.lat city.latitude
@@ -57,6 +57,9 @@ class CompaniesController < ApplicationController
     redirect_to user_companies_path(@user)
   end
 
+  def search
+    @companies = Company.search(params[:name], params[:city][:city_id], params[:category][:category_ids])
+  end
 
   private
 

@@ -10,12 +10,13 @@ Rails.application.routes.draw do
   get  '/listed-companies', to: 'reviews#listed_companies'
   get  '/find-friend',      to: 'friends#index'
   get  '/search-friend',    to: 'friends#search'
+  get  '/search-company',   to: 'companies#search'
 
   # adding, blocking and rejecting Friends
-  post '/users/:user_id/friend/:id/block_user', to: 'users#block_user', as: 'block_user'
+  post '/users/:user_id/friend/:id/block_user',              to: 'users#block_user', as: 'block_user'
   post '/users/:user_id/friend/:id/add_friend_from_blocked', to: 'users#add_friend_from_blocked', as: 'add_friend_from_blocked'
   post '/users/:user_id/friend/:id/add_friend_from_pending', to: 'users#add_friend_from_pending', as: 'add_friend_from_pending'
-  post '/users/:user_id/friend/:id/reject_friendship', to: 'users#reject_friendship', as: 'reject_friendship'
+  post '/users/:user_id/friend/:id/reject_friendship',       to: 'users#reject_friendship', as: 'reject_friendship'
 
   resources :users, only: [:create, :edit, :update] do
     get 'reviews',    on: :member
