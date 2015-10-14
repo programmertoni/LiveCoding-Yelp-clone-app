@@ -21,13 +21,13 @@ class CitiesController < ApplicationController
   end
 
   def edit
-    @city = City.find(params[:id])
+    @current_city = City.find(params[:id])
   end
 
   def update
-    @city = City.find(params[:id])
+    @current_city = City.find(params[:id])
 
-    if @city.update(city_params)
+    if @current_city.update(city_params)
       flash[:success] = "City was successfuly updated!"
       redirect_to cities_path
     else

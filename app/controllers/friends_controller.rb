@@ -29,7 +29,6 @@ class FriendsController < ApplicationController
   end
 
   def send_request
-
     Friend.create(user_id: current_user.id,
                   id_of_friend: params[:id],
                   pending:   false,
@@ -42,12 +41,8 @@ class FriendsController < ApplicationController
                   user_blocked:   false,
                   a_friend:  false)
 
+    flash[:success] = 'Friend request was successfully sent!'
     redirect_to find_friend_path
-
-    # 2 rows are created
-    # user: :user_id, id_of_friend: :id, pending: false, blocked: false, a_friend: false
-    # user: :id, id_of_friend: :user_id, pending: true, blocked: false, a_friend: false
-
   end
 
 end
