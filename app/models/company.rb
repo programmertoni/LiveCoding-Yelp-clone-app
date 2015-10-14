@@ -13,13 +13,13 @@ class Company < ActiveRecord::Base
   def self.search(name, city_id, category_id)
     case
     when city_id.empty? && category_id.empty?
-      where('name LIKE(?)', "%#{name.downcase}%")
+      where('name ILIKE(?)', "%#{name}%")
     when city_id.empty? && !category_id.empty?
-      joins(:categories).where('name LIKE(?) AND category_id = ?', "%#{name.downcase}%", category_id)
+      joins(:categories).where('name ILIKE(?) AND category_id = ?', "%#{name}%", category_id)
     when !city_id.empty? && category_id.empty?
-      where('name LIKE(?) AND city_id = ?', "%#{name.downcase}%", city_id)
+      where('name ILIKE(?) AND city_id = ?', "%#{name}%", city_id)
     else
-      joins(:categories).where('name LIKE(?) AND city_id = ? AND category_id = ?', "%#{name.downcase}%", city_id, category_id)
+      joins(:categories).where('name ILIKE(?) AND city_id = ? AND category_id = ?', "%#{name}%", city_id, category_id)
     end
   end
 
