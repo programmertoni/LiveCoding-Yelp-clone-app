@@ -30,10 +30,10 @@
           = fa_icon 'lightbulb-o', text: 'useful'
       - unless review.voted_on_funny_vote_by?(current_user)
         = link_to vote_funny_review_path(id: review.id, user_id: current_user.id), id: "funny_#{review.id}", class: 'btn btn-info useful-funny-cool-btn', method: :post, remote: true do
-          = fa_icon 'lightbulb-o', text: 'funny'
+          = fa_icon 'smile-o', text: 'funny'
       - unless review.voted_on_cool_vote_by?(current_user)
         = link_to vote_cool_review_path(id: review.id, user_id: current_user.id), id: "cool_#{review.id}", class: 'btn btn-info useful-funny-cool-btn', method: :post, remote: true do
-          = fa_icon 'lightbulb-o', text: 'cool'
+          = fa_icon 'empire', text: 'cool'
 
     - if logged_in?
       - unless review.flaged_by? current_user
