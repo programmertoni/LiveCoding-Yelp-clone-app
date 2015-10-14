@@ -10,4 +10,7 @@ class Review < ActiveRecord::Base
 
   validates_uniqueness_of :user_id, scope: [:user_id, :company_id]
 
+  def flaged_by?(user)
+    Flag.where(review_id: self.id, flaged_by_user_id: user.id) == [] ? false : true
+  end
 end

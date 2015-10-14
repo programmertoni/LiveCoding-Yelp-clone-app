@@ -1,0 +1,16 @@
+%h1.text-center.large-heading Users
+%br
+.row
+  = render 'shared/left_navigation'
+  .col-md-8
+    %ul.list-of-categories
+      - @users.each do |user|
+        %li
+          = user.full_name.titleize
+          %span(class='pull-right cl-effect-12')
+            = link_to new_user_message_path(user) do
+              = fa_icon 'envelope-o', text: 'mail'
+            = link_to user_path(user),  method: :delete,
+                                        class: 'category-icon',
+                                        data: { confirm: 'Are you sure?' }do
+              = fa_icon 'close', text: 'delete'

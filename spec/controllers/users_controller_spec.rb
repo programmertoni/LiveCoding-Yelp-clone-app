@@ -2,6 +2,80 @@ require 'rails_helper'
 
 describe UsersController do
 
+  describe 'GET #index' do
+    let(:admin) do
+      admin = User.create(full_name: 'Admin Toni', password: 'password', role: 'user')
+      admin.update(role: 'admin')
+      admin
+    end
+
+    let(:user) { Fabricate(:user) }
+
+    context 'when admin is logged in' do
+      it 'assigns @users to all users' do
+        admin #creates admin
+        session[:user_id] = admin.id
+        get :index
+        expect(assigns[:users]).to eq(User.all)
+      end
+    end
+
+    context 'when user or owner are logged in' do
+      it 'redirects to login page' do
+        session[:user_id] = user.id
+        get :index
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        get :index
+        expect(response).to redirect_to(login_path)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let(:admin) do
+      admin = User.create(full_name: 'Admin Toni', password: 'password', role: 'user')
+      admin.update(role: 'admin')
+      admin
+    end
+
+    let(:user) { Fabricate(:user) }
+
+    context 'when admin is logged in' do
+      it 'deletes a user' do
+        admin #creates admin
+        session[:user_id] = admin.id
+        delete :destroy, id: user.id
+        expect(User.all.count).to eq(1)
+      end
+
+      it 'redirects to all users page' do
+        admin #creates admin
+        session[:user_id] = admin.id
+        delete :destroy, id: user.id
+        expect(response).to redirect_to(users_path)
+      end
+    end
+
+    context 'when user or owner is logged in' do
+      it 'redirects to login page' do
+        session[:user_id] = user.id
+        delete :destroy, id: 69
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context 'when user is not logged in'
+      it 'redirects to login page' do
+        delete :destroy, id: 69
+        expect(response).to redirect_to(login_path)
+      end
+  end
+
   describe 'GET #new' do
     it 'assigns a @user variable' do
       get :new

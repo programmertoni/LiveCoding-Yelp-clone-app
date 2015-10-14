@@ -26,7 +26,10 @@
     %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'lightbulb-o', text: 'useful'
     %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'smile-o', text: 'funny'
     %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'empire', text: 'cool'
-    %a(href='#' class='btn btn-primary pull-right')= fa_icon 'flag', text: 'flag'
+
+    - unless review.flaged_by? current_user
+      = link_to flags_path(review_id: review.id, flaged_by_user_id: current_user.id, flaged_user_id: review.user.id), method: :post, class: 'btn btn-primary pull-right', id: "flag_#{review.id}", remote: true do
+        = fa_icon 'flag', text: 'flag'
 
 - unless @reviews.last == review
   %hr

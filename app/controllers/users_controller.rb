@@ -1,6 +1,16 @@
 class UsersController < ApplicationController
-  before_action :require_user,      except: [:new, :create]
-  before_action :require_same_user, except: [:new, :create]
+  before_action :require_user,      except: [:index, :new, :create, :destroy]
+  before_action :require_same_user, except: [:index, :new, :create, :destroy]
+  before_action :require_admin,     only:   [:index, :destroy]
+
+  def index
+    @users = User.all
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to users_path
+  end
 
   def new
     @user = User.new
