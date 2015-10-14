@@ -222,6 +222,26 @@ describe UsersController do
     end
   end
 
+  describe 'GET #public_reviews' do
+    let!(:user)   { Fabricate(:user) }
+    let!(:review) { Fabricate(:review, user: user) }
+
+    context 'when user is logged in' do
+      it 'assigns @reviews' do
+        session[:user_id] = user.id
+        get :public_reviews, id: user.id
+        expect(assigns[:reviews]).to eq(user.reviews)
+      end
+
+      it 'assigns @user' do
+        session[:user_id] = user.id
+        get :public_reviews, id: user.id
+        expect(assigns[:user]).to eq(user)
+      end
+    end
+  end
+
+
   describe 'GET #my_friends' do
 
     context 'when user is logged in' do

@@ -62,6 +62,36 @@ class ReviewsController < ApplicationController
     @reviews = Review.all.order(created_at: :desc).limit(10)
   end
 
+  def vote_useful
+    @review_id = Review.find(params[:id]).id.to_s
+    Vote.create(vote_type: 'useful', review_id: @review_id, user_id: current_user.id)
+    @count = Vote.where(vote_type: 'useful', review_id: @review_id).count.to_s
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def vote_funny
+    @review_id = Review.find(params[:id]).id.to_s
+    Vote.create(vote_type: 'funny', review_id: @review_id, user_id: current_user.id)
+    @count = Vote.where(vote_type: 'funny', review_id: @review_id).count.to_s
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def vote_cool
+    @review_id = Review.find(params[:id]).id.to_s
+    Vote.create(vote_type: 'cool', review_id: @review_id, user_id: current_user.id)
+    @count = Vote.where(vote_type: 'cool', review_id: @review_id).count.to_s
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def review_params

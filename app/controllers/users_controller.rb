@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_user,      except: [:index, :new, :create, :destroy]
-  before_action :require_same_user, except: [:index, :new, :create, :destroy]
+  before_action :require_same_user, except: [:index, :new, :create, :destroy, :public_reviews]
   before_action :require_admin,     only:   [:index, :destroy]
 
   def index
@@ -44,6 +44,11 @@ class UsersController < ApplicationController
   end
 
   def reviews
+    @user    = User.find(params[:id])
+    @reviews = @user.reviews
+  end
+
+  def public_reviews
     @user    = User.find(params[:id])
     @reviews = @user.reviews
   end

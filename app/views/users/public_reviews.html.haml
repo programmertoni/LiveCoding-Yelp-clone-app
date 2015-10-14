@@ -1,0 +1,6 @@
+%h1.text-center
+  = "#{@user.full_name} reviews"
+- @reviews.each do |review|
+  .review
+  = render 'shared/review', review: review
+
