@@ -1,5 +1,10 @@
 class FlagsController < ApplicationController
+  before_action :require_admin, only: [:index, :destroy]
   before_action :require_user
+
+  def index
+    @flags = Flag.all
+  end
 
   def create
     @review_id = params[:review_id]
@@ -11,6 +16,11 @@ class FlagsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def destroy
+    Flag.find(params[:id]).destroy
+    redirect_to flags_path
   end
 
 end

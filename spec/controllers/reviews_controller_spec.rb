@@ -122,6 +122,45 @@ describe ReviewsController do
     end
   end
 
+  describe '#DELETE #destroy_by_admin' do
+    let(:user)    { Fabricate(:user) }
+    let(:review)  { Fabricate(:review, company: company, user: user) }
+    let(:admin) do
+      admin = User.create(full_name: 'Admin Toni', password: 'password', role: 'user')
+      admin.update(role: 'admin')
+      admin
+    end
+
+    context 'when admin is logged in' do
+      it 'deletes review' do
+        session[:user_id] = admin.id
+        delete :destroy_by_admin, id: review.id
+        expect(Review.all.count).to eq(0)
+      end
+
+      it 'redirects back to All flags page' do
+        session[:user_id] = admin.id
+        delete :destroy_by_admin, id: review.id
+        expect(response).to redirect_to(flags_path)
+      end
+    end
+
+    context 'when user or owenr are logged in' do
+      it 'redirects to login page' do
+        session[:user_id] = user.id
+        delete :destroy_by_admin, id: review.id
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        delete :destroy_by_admin, id: review.id
+        expect(response).to redirect_to(login_path)
+      end
+    end
+  end
+
   describe 'DETLETE #destroy' do
     let(:user)    { Fabricate(:user) }
     let(:owner)   { Fabricate(:user, role: 'owner') }

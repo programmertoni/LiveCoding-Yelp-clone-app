@@ -1,0 +1,20 @@
+%h1.text-center.large-heading Review Flags
+%br
+
+.row
+  = render 'shared/left_navigation'
+  .col-md-9
+    %ol.list-of-flags
+      - @flags.each do |flag|
+        %li.text-justify
+          = flag.review.content
+          %div
+            %span(class='cl-effect-12')
+              = link_to new_user_message_path(flag.flaged_user_id), class: 'category-icon' do
+                = fa_icon 'envelope-o', text: 'writer'
+              = link_to new_user_message_path(flag.flaged_by_user_id), class: 'category-icon' do
+                = fa_icon 'envelope', text: 'reporter'
+              = link_to flag_path(flag.id), class: 'category-icon', method: :delete do
+                = fa_icon 'close', text: 'delete flag'
+              = link_to destroy_by_admin_review_path(flag.review_id), class: 'category-icon', method: :delete do
+                = fa_icon 'warning', text: 'delete review'

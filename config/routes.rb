@@ -42,8 +42,9 @@ Rails.application.routes.draw do
   resources :cities,     only: [:index, :new, :create, :edit, :update, :destroy]
   resources :flags,      only: [:index, :create, :destroy]
 
-  resources :reviews, only: [] do
-    get 'recent', on: :collection
+  resources :reviews, only: [:show] do
+    delete 'destroy_by_admin', on: :member
+    get    'recent', on: :collection
   end
 
   get '/ui(/:action)', controller: 'ui'

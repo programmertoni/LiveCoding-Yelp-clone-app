@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :require_admin, only: [:destroy_by_admin]
   before_action :require_user, except: [:recent]
   before_action :require_same_user, only: [:update, :destroy]
 
@@ -46,6 +47,11 @@ class ReviewsController < ApplicationController
   def destroy
     Review.find(params[:id]).destroy
     redirect_to reviews_user_path(current_user)
+  end
+
+  def destroy_by_admin
+    Review.find(params[:id]).destroy
+    redirect_to flags_path
   end
 
   def listed_companies
