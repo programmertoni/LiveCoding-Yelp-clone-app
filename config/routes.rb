@@ -18,9 +18,10 @@ Rails.application.routes.draw do
   post '/users/:user_id/friend/:id/add_friend_from_pending', to: 'users#add_friend_from_pending', as: 'add_friend_from_pending'
   post '/users/:user_id/friend/:id/reject_friendship',       to: 'users#reject_friendship', as: 'reject_friendship'
 
-  resources :users, only: [:create, :edit, :update] do
-    get 'reviews',    on: :member
-    get 'my-friends', on: :member
+  resources :users, only: [:index, :create, :edit, :update, :destroy] do
+    get 'reviews',        on: :member
+    get 'public_reviews', on: :member
+    get 'my-friends',     on: :member
 
     resources :messages, only: [:index, :show, :new, :create, :destroy] do
       member do
@@ -40,9 +41,14 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :cities,     only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :flags,      only: [:index, :create, :destroy]
 
   resources :reviews, only: [] do
-    get 'recent', on: :collection
+    get    'recent',           on: :collection
+    delete 'destroy_by_admin', on: :member
+    post   'vote_useful',      on: :member
+    post   'vote_funny',       on: :member
+    post   'vote_cool',        on: :member
   end
 
   get '/ui(/:action)', controller: 'ui'

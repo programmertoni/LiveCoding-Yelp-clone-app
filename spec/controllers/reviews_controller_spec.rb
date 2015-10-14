@@ -122,6 +122,45 @@ describe ReviewsController do
     end
   end
 
+  describe '#DELETE #destroy_by_admin' do
+    let(:user)    { Fabricate(:user) }
+    let(:review)  { Fabricate(:review, company: company, user: user) }
+    let(:admin) do
+      admin = User.create(full_name: 'Admin Toni', password: 'password', role: 'user')
+      admin.update(role: 'admin')
+      admin
+    end
+
+    context 'when admin is logged in' do
+      it 'deletes review' do
+        session[:user_id] = admin.id
+        delete :destroy_by_admin, id: review.id
+        expect(Review.all.count).to eq(0)
+      end
+
+      it 'redirects back to All flags page' do
+        session[:user_id] = admin.id
+        delete :destroy_by_admin, id: review.id
+        expect(response).to redirect_to(flags_path)
+      end
+    end
+
+    context 'when user or owenr are logged in' do
+      it 'redirects to login page' do
+        session[:user_id] = user.id
+        delete :destroy_by_admin, id: review.id
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        delete :destroy_by_admin, id: review.id
+        expect(response).to redirect_to(login_path)
+      end
+    end
+  end
+
   describe 'DETLETE #destroy' do
     let(:user)    { Fabricate(:user) }
     let(:owner)   { Fabricate(:user, role: 'owner') }
@@ -209,6 +248,83 @@ describe ReviewsController do
         expect(response).to render_template(:recent)
       end
 
+    end
+  end
+
+  describe 'POST #vote_useful' do
+    let(:user)   { Fabricate(:user) }
+    let(:review) { Fabricate(:review) }
+
+    context 'when user is logged in' do
+      it 'creates vote if user has not jet voted' do
+        session[:user_id] = user.id
+        post :vote_useful, id: review.id, format: :js
+        expect(Vote.count).to eq(1)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'does not create a vote' do
+        post :vote_useful, id: review.id, format: :js
+        expect(Vote.count).to eq(0)
+      end
+
+      it 'redirects to login page' do
+        post :vote_useful, id: review.id, format: :js
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+  end
+
+  describe 'POST #vote_funny' do
+    let(:user)   { Fabricate(:user) }
+    let(:review) { Fabricate(:review) }
+
+    context 'when user is logged in' do
+      it 'creates vote if user has not jet voted' do
+        session[:user_id] = user.id
+        post :vote_funny, id: review.id, format: :js
+        expect(Vote.count).to eq(1)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'does not create a vote' do
+        post :vote_funny, id: review.id, format: :js
+        expect(Vote.count).to eq(0)
+      end
+
+      it 'redirects to login page' do
+        post :vote_funny, id: review.id, format: :js
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+  end
+
+  describe 'POST #vote_cool' do
+    let(:user)   { Fabricate(:user) }
+    let(:review) { Fabricate(:review) }
+
+    context 'when user is logged in' do
+      it 'creates vote if user has not jet voted' do
+        session[:user_id] = user.id
+        post :vote_cool, id: review.id, format: :js
+        expect(Vote.count).to eq(1)
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'does not create a vote' do
+        post :vote_cool, id: review.id, format: :js
+        expect(Vote.count).to eq(0)
+      end
+
+      it 'redirects to login page' do
+        post :vote_cool, id: review.id, format: :js
+        expect(response).to redirect_to(login_path)
+      end
     end
 
   end

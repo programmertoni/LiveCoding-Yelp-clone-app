@@ -11,4 +11,5 @@
           %span.cl-effect-12
             %a(href='#')= fa_icon 'user', text: "#{user.full_name}"
             %span(class='pull-right')
-              %a(href='#' class='smaller-icon green')= fa_icon 'paper-plane-o', text: 'Friend Request'
+              = link_to send_request_user_friend_path(current_user, user), class: 'smaller-icon green', method: :post do
+                = fa_icon 'paper-plane-o', text: 'Friend Request'

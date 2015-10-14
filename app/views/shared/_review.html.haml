@@ -1,7 +1,7 @@
 .row.col-md-12
   %span.cl-effect-12
     - company = review.company
-    = link_to shorten_full_name(review.user.full_name), '#'
+    = link_to shorten_full_name(review.user.full_name), public_reviews_user_path(review.user)
   wrote a review for
   %span.cl-effect-12
     = link_to company.name, user_company_path(company.owner, company)
@@ -20,13 +20,25 @@
       = review.content
 .row
   .col-md-12
-    %p.light_brown Was this review?
+    - if logged_in?
+      %p.light_brown Was this review?
 .row
   .col-md-12
-    %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'lightbulb-o', text: 'useful'
-    %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'smile-o', text: 'funny'
-    %a(href='#' class='btn btn-info useful-funny-cool-btn')= fa_icon 'empire', text: 'cool'
-    %a(href='#' class='btn btn-primary pull-right')= fa_icon 'flag', text: 'flag'
+    - if logged_in?
+      - unless review.voted_on_useful_vote_by?(current_user)
+        = link_to vote_useful_review_path(id: review.id, user_id: current_user.id), id: "useful_#{review.id}", class: 'btn btn-info useful-funny-cool-btn', method: :post, remote: true do
+          = fa_icon 'lightbulb-o', text: 'useful'
+      - unless review.voted_on_funny_vote_by?(current_user)
+        = link_to vote_funny_review_path(id: review.id, user_id: current_user.id), id: "funny_#{review.id}", class: 'btn btn-info useful-funny-cool-btn', method: :post, remote: true do
+          = fa_icon 'lightbulb-o', text: 'funny'
+      - unless review.voted_on_cool_vote_by?(current_user)
+        = link_to vote_cool_review_path(id: review.id, user_id: current_user.id), id: "cool_#{review.id}", class: 'btn btn-info useful-funny-cool-btn', method: :post, remote: true do
+          = fa_icon 'lightbulb-o', text: 'cool'
+
+    - if logged_in?
+      - unless review.flaged_by? current_user
+        = link_to flags_path(review_id: review.id, flaged_by_user_id: current_user.id, flaged_user_id: review.user.id), method: :post, class: 'btn btn-primary pull-right', id: "flag_#{review.id}", remote: true do
+          = fa_icon 'flag', text: 'flag'
 
 - unless @reviews.last == review
   %hr

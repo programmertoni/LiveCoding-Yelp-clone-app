@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :require_admin, only: [:destroy_by_admin]
   before_action :require_user, except: [:recent]
   before_action :require_same_user, only: [:update, :destroy]
 
@@ -48,12 +49,47 @@ class ReviewsController < ApplicationController
     redirect_to reviews_user_path(current_user)
   end
 
+  def destroy_by_admin
+    Review.find(params[:id]).destroy
+    redirect_to flags_path
+  end
+
   def listed_companies
     @companies = Company.all.order(created_at: :desc)
   end
 
   def recent
     @reviews = Review.all.order(created_at: :desc).limit(10)
+  end
+
+  def vote_useful
+    @review_id = Review.find(params[:id]).id.to_s
+    Vote.create(vote_type: 'useful', review_id: @review_id, user_id: current_user.id)
+    @count = Vote.where(vote_type: 'useful', review_id: @review_id).count.to_s
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def vote_funny
+    @review_id = Review.find(params[:id]).id.to_s
+    Vote.create(vote_type: 'funny', review_id: @review_id, user_id: current_user.id)
+    @count = Vote.where(vote_type: 'funny', review_id: @review_id).count.to_s
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def vote_cool
+    @review_id = Review.find(params[:id]).id.to_s
+    Vote.create(vote_type: 'cool', review_id: @review_id, user_id: current_user.id)
+    @count = Vote.where(vote_type: 'cool', review_id: @review_id).count.to_s
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
