@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 describe UsersController do
-
   describe 'GET #index' do
+    let(:user) { Fabricate(:user) }
+
     let(:admin) do
       admin = User.create(full_name: 'Admin Toni', password: 'password', role: 'user')
       admin.update(role: 'admin')
       admin
     end
-
-    let(:user) { Fabricate(:user) }
 
     context 'when admin is logged in' do
       it 'assigns @users to all users' do
@@ -37,13 +36,13 @@ describe UsersController do
   end
 
   describe 'DELETE #destroy' do
+    let(:user) { Fabricate(:user) }
+
     let(:admin) do
       admin = User.create(full_name: 'Admin Toni', password: 'password', role: 'user')
       admin.update(role: 'admin')
       admin
     end
-
-    let(:user) { Fabricate(:user) }
 
     context 'when admin is logged in' do
       it 'deletes a user' do
@@ -74,7 +73,7 @@ describe UsersController do
         delete :destroy, id: 69
         expect(response).to redirect_to(login_path)
       end
-  end
+    end
 
   describe 'GET #new' do
     it 'assigns a @user variable' do
@@ -201,24 +200,29 @@ describe UsersController do
         expect(response).to redirect_to(login_path)
       end
     end
-
   end
 
   describe 'GET #reviews' do
-    let!(:owner)    { Fabricate(:user, role: 'owner') }
+    let!(:user)      { Fabricate(:user) }
+    let!(:company_1) { Fabricate(:company) }
+    let!(:company_2) { Fabricate(:company) }
 
-    context 'when user is logged in' do
-      before(:example) { session[:user_id] = owner.id }
-
-      it 'displays all the users reviews' do
-        # This is creating more than one user for reason I don't know
-      end
-      it 'orders review by newest first'
-      it 'does not display other user review'
+    before(:example) do
+      @review_1 = Review.create(stars: 1, content: 'some text', user_id: user.id, company_id: company_1.id)
+      @review_2 = Review.create(stars: 1, content: 'some text', user_id: user.id, company_id: company_2.id, created_at: 1.minute.ago, updated_at: 1.minute.ago)
     end
 
-    context 'when user is not logged in' do
-      it 'redirects_to login page'
+    context 'when user is logged in' do
+      it 'displays all the users reviews ordered newest first' do
+        session[:user_id] = user.id
+        get :reviews, id: user.id
+        expect(assigns[:reviews]).to match_array([@review_2, @review_1])
+      end
+      it 'orders review by newest first' do
+        session[:user_id] = user.id
+        get :reviews, id: user.id
+        expect(assigns[:reviews]).to eq([@review_1, @review_2])
+      end
     end
   end
 
@@ -240,40 +244,4 @@ describe UsersController do
       end
     end
   end
-
-
-  describe 'GET #my_friends' do
-
-    context 'when user is logged in' do
-    end
-
-    context 'when user is not logged in'
-
-  end
-
-  describe 'POST #block_user' do
-    context 'when user is logged in' do
-      let!(:user)      { Fabricate(:user) }
-      let!(:friend_1)  { Fabricate(:friend, user_id: user.id) }
-      let!(:friend_2)  { Fabricate(:friend, user_id: user.id) }
-      let!(:pending_1) { Fabricate(:friend, user_id: user.id, pending: true, a_friend: false) }
-      let!(:blocked_1) { Fabricate(:friend, user_id: user.id, user_blocked: true, a_friend: false) }
-
-      it 'redirects to all my friends page' do
-        skip
-        # I do not know why this is not working
-        post :block_user, user_id: user.id, id: friend_1.id
-        expect(user.blocked_friends.count).to eq(2)
-      end
-
-      it 'changes user_block to true'
-
-      it 'cannot change other users user_block params to true'
-    end
-
-    context 'when user is not logged in' do
-      it 'redirects to login path'
-    end
-  end
-
 end

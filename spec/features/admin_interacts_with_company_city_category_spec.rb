@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'Admin interacts with company city and category' do
-
   given(:city) do
     City.create(name: 'Ljubljana', country: 'Slovenia')
   end
@@ -11,9 +10,8 @@ feature 'Admin interacts with company city and category' do
     set_and_login with: 'Admin Toni', as: 'admin'
     admin_adds_a_company
     admin_edits_the_company
-
   end
-  
+
   scenario 'Admin creates and updates a city' do
     set_and_login with: 'Admin Toni', as: 'admin'
     admin_adds_new_city
@@ -25,7 +23,6 @@ feature 'Admin interacts with company city and category' do
     admin_adds_new_category
     admin_edits_a_category
   end
-
 
   private
 
@@ -84,5 +81,4 @@ feature 'Admin interacts with company city and category' do
     click_button 'Save'
     expect(page).to have_content('Food & Drink')
   end
-
 end

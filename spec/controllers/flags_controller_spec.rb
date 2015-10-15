@@ -54,7 +54,6 @@ describe FlagsController do
           expect(Flag.all.count).to eq(0)
       end
     end
-
   end
 
   describe 'DELETE #destroy' do

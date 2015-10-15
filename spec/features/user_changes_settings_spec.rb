@@ -1,17 +1,21 @@
 require 'rails_helper'
 
 feature 'User changes settings' do
-
   scenario 'User changes settings a couple of times' do
-
     set_and_login with: 'User Toni', as: 'user'
+  end
 
+  private
+
+  def user_changes_name
     click_link 'Account Settings'
     expect(page).to have_content('My Settings')
     fill_in 'Full Name', with: 'Changed Name'
     click_button 'Save'
     expect(page).to have_content('Changed N.')
+  end
 
+  def user_changes_password_logs_out_and_than_logs_in_with_new_password
     fill_in 'Password', with: 'Changed'
     click_button 'Save'
     expect(page).to have_content("You've successfuly updated you're account settings.")

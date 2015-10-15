@@ -24,5 +24,4 @@ describe ApplicationHelper do
       expect(average_rating(company)).to eq(0)
     end
   end
-
 end

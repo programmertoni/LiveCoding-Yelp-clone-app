@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Message do
-
   it { is_expected.to belong_to(:user) }
 
+  # validations
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:content) }
 
@@ -48,5 +48,4 @@ describe Message do
       expect(user.num_of_important_messages).to eq(1)
     end
   end
-
 end

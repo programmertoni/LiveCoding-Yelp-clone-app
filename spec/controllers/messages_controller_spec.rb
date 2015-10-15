@@ -2,30 +2,6 @@ require 'rails_helper'
 
 describe MessagesController do
 
-  describe 'GET #index' do
-    let(:user)       { Fabricate(:user) }
-    let!(:message_1) { Fabricate(:message, user_id: user.id) }
-    let!(:message_2) { Fabricate(:message, user_id: user.id) }
-
-    it 'assigns @messages' do
-      # I don't know why this is not working
-      # get :index, user_id: user.id
-      # expect(assigns[:messages]).to match_array([message_1, message_2])
-    end
-
-    it 'requires same user'
-  end
-
-  describe 'GET #show' do
-    let!(:user)       { Fabricate(:user) }
-    let!(:message_1) { Fabricate(:message, user_id: user.id) }
-
-    it 'assigns @message' do
-      # get :show, user_id: user.id, id: message_1.id
-      # expect(assigns[:message]).to eq(Message.first)
-    end
-  end
-
   describe 'GET #new' do
     let(:user)   { Fabricate(:user) }
     let(:friend) { Fabricate(:user) }
@@ -42,7 +18,6 @@ describe MessagesController do
         get :new, user_id: friend.id
         expect(assigns[:friend]).to eq(User.find(friend.id))
       end
-
     end
 
     context 'when user is not logged in' do
@@ -82,7 +57,6 @@ describe MessagesController do
         expect(response).to render_template(:new)
       end
 
-      it 'does not create/send message if not sender a friend that is blocked or admin'
     end
 
     context 'when user is not logged in' do
@@ -158,5 +132,4 @@ describe MessagesController do
       expect(user.num_of_read_messages).to eq(1)
     end
   end
-
 end

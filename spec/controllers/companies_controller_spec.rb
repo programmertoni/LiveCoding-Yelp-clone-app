@@ -29,25 +29,17 @@ describe CompaniesController do
       let(:user)  { Fabricate(:user, role: 'user') }
 
       context 'with valid params' do
-
         before(:example) do
           session[:user_id] = owner.id
         end
 
         it 'creates new company' do
           post :create,
-                user_id: owner.id, company: Fabricate.attributes_for(:company)
+                user_id: owner.id,
+                company: Fabricate.attributes_for(:company)
+
           expect(Company.all.count).to eq(1)
           expect(flash[:success]).to eq("You've just created new company!")
-        end
-      end
-
-      context 'with invalid params' do
-        it 'renders new template to display errors' do
-          skip
-          post :create,
-                user_id: owner.id, company: Fabricate.attributes_for(:company, name: '', price_range: nil)
-          expect(response).to render_template(:new)
         end
       end
     end
@@ -61,13 +53,16 @@ describe CompaniesController do
 
       it 'does not create company' do
         post :create,
-              user_id: user.id, company: Fabricate.attributes_for(:company)
+              user_id: user.id,
+              company: Fabricate.attributes_for(:company)
+
         expect(Company.all.count).to eq(0)
       end
 
       it 'redirects_to root_path' do
         post :create, user_id: user.id,
               company: Fabricate.attributes_for(:company)
+
         expect(response).to redirect_to(login_path)
         expect(flash[:danger]).to eq("You have to be logged in!")
       end
@@ -79,6 +74,7 @@ describe CompaniesController do
       it 'redirects to login_path' do
         post :create, user_id: user.id,
               company: Fabricate.attributes_for(:company)
+
         expect(response).to redirect_to(login_path)
       end
 
@@ -192,6 +188,7 @@ describe CompaniesController do
         patch :update,  user_id: owner.id,
                         id: company.id,
                         company: { name: 'McDonalds Slovenija' }
+
         expect(response).to redirect_to(login_path)
       end
 

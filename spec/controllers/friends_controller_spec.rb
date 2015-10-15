@@ -103,5 +103,4 @@ describe FriendsController do
       end
     end
   end
-
 end

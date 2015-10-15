@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe SessionsController do
-
   describe 'GET #new' do
-
     context 'when user is logged in' do
       it 'redirect user to home page' do
         session[:user_id] = Fabricate(:user).id
@@ -18,11 +16,9 @@ describe SessionsController do
         expect(response).to render_template(:new)
       end
     end
-
   end
 
   describe 'POST #create' do
-
     let(:user) { Fabricate(:user) }
 
     context 'with valid params' do
@@ -59,11 +55,9 @@ describe SessionsController do
         expect(flash[:danger]).to eq('There was something wrong with your Full Name or Password!')
       end
     end
-
   end
 
   describe 'GET #destroy' do
-
     let(:user) { Fabricate(:user) }
 
     before(:example) do
@@ -84,7 +78,5 @@ describe SessionsController do
       get :destroy
       expect(flash[:success]).to eq("You are logged out. We hope to see you soon!")
     end
-
   end
-
 end

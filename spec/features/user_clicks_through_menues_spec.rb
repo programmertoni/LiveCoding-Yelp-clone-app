@@ -20,7 +20,7 @@ feature 'User clicks through the App' do
     click_link 'Messages'
     expect(page).to have_content('My Messages')
     click_link 'About us'
-    expect(page).to have_content('No us just me. So if a I can build this simple web app so can YOU!')
+    expect(page).to have_content('No us just me.')
     click_link 'Help'
     expect(page).to have_content('This app is really easy to use if you know how the real Yelp app works.')
     fill_in 'name', with: 'Addidas'
@@ -46,5 +46,4 @@ feature 'User clicks through the App' do
     expect(page).to have_no_content('Find Friends')
     expect(page).to have_no_content('Messages')
   end
-
 end

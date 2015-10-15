@@ -13,10 +13,10 @@
     - @companies.each do |company|
       .row
         %span.cl-effect-12
-          = link_to company.name, '#', class: 'company-name'
+          = link_to company.name, user_company_path(company.owner, company), class: 'company-name'
       .row
         - company.categories.each do |category|
-          = link_to category.title, '#', class: 'label label-primary'
+          = link_to category.title, category_path(category), class: 'label label-primary'
       .row
         .average-stars.company-stars
           - full_stars = average_rating(company)

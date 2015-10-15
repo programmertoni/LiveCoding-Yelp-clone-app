@@ -9,7 +9,8 @@
       - @search_result.each do |user|
         %li
           %span.cl-effect-12
-            %a(href='#')= fa_icon 'user', text: "#{user.full_name}"
+            = link_to public_reviews_user_path(user) do
+              = fa_icon 'user', text: "#{user.full_name}"
             %span(class='pull-right')
               = link_to send_request_user_friend_path(current_user, user), class: 'smaller-icon green', method: :post do
                 = fa_icon 'paper-plane-o', text: 'Friend Request'

@@ -4,7 +4,10 @@
       %h1 Yelp
       .logo-subheading.bevan clone app
     .col-md-9.col-md-offset-2
-      = render 'shared/search_form'
+      - if logged_in?
+        = render 'shared/search_form'
+      - else
+        = render 'shared/hidden_search_form'
     .col-md-1
       - if logged_in?
         %span.dropdown.pull-right

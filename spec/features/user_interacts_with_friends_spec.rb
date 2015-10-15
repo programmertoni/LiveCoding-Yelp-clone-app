@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'user interact with friends feature' do
-
   given!(:friend) do
     User.create(full_name: 'Friend Jakob', password: 'password', role: 'user')
   end

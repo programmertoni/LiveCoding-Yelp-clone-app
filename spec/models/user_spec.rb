@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe User do
-
   it { is_expected.to have_many(:companies) }
   it { is_expected.to have_many(:friends).dependent(true) }
   it { is_expected.to have_many(:reviews).dependent(true) }
   it { is_expected.to have_many(:votes).dependent(true) }
   it { is_expected.to have_many(:messages).dependent(true) }
 
+  # validations
   it { is_expected.to validate_presence_of(:full_name) }
   it { is_expected.to validate_presence_of(:role) }
 
@@ -84,7 +84,6 @@ describe User do
   end
 
   describe '#blocked?(current_user)' do
-
     let!(:user)         { Fabricate(:user) }
     let!(:friend_1)     { Fabricate(:user) }
     let!(:friend_2)     { Fabricate(:user) }
@@ -107,7 +106,5 @@ describe User do
     it 'returnes false if friend did not bocked the user' do
       expect(user.blocked_by?(friend_2)).to be false
     end
-
   end
-
 end

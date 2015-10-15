@@ -20,7 +20,7 @@
         - @friends.each do |user|
           %li
             %span.cl-effect-12
-              = link_to '#' do
+              = link_to public_reviews_user_path(user) do
                 = fa_icon 'child', text: user.full_name
               %span(class='pull-right')
                 - unless current_user.blocked_by?(user)
@@ -32,7 +32,7 @@
         - @pending_friends.each do |user|
           %li
             %span.cl-effect-12
-              = link_to '#' do
+              = link_to public_reviews_user_path(user) do
                 = fa_icon 'street-view', text: user.full_name
               %span(class='pull-right')
                 = link_to add_friend_from_pending_path(current_user, user), class: 'smaller-icon green', method: :post do
@@ -43,7 +43,7 @@
         - @blocked_friends.each do |user|
           %li
             %span.cl-effect-12
-              = link_to '#' do
+              = link_to public_reviews_user_path(user) do
                 = fa_icon 'user-secret', text: user.full_name
               %span(class='pull-right')
                 = link_to add_friend_from_blocked_path(current_user, user), class: 'smaller-icon green', method: :post do

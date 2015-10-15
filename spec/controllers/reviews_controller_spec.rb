@@ -42,15 +42,6 @@ describe ReviewsController do
         expect(Review.all.count).to eq(0)
         expect(flash[:danger]).to eq('You have to mark star and write a comment up to 500 characters!')
       end
-
-      it 'user san create only one review per company'
-      it 'displays danger flash message that user has already reviewed this company'
-
-    end
-
-    context 'when user is not logged in' do
-      it 'redirects to login page'
-      it 'does not create new review'
     end
   end
 
@@ -115,7 +106,7 @@ describe ReviewsController do
       end
 
       it 'does not update the review' do
-        review
+        review #creates review
         get :update, user_id: user.id, company_id: company.id, id: review.id, review: Fabricate.attributes_for(:review, content: 'Changed!!!')
         expect(review.reload.content).not_to eq('Changed!!!')
       end
@@ -247,7 +238,6 @@ describe ReviewsController do
         get :recent
         expect(response).to render_template(:recent)
       end
-
     end
   end
 
@@ -300,7 +290,6 @@ describe ReviewsController do
         expect(response).to redirect_to(login_path)
       end
     end
-
   end
 
   describe 'POST #vote_cool' do
@@ -326,7 +315,5 @@ describe ReviewsController do
         expect(response).to redirect_to(login_path)
       end
     end
-
   end
-
 end
