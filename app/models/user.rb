@@ -65,5 +65,8 @@ class User < ActiveRecord::Base
     important_messages.pluck(:id).count
   end
 
+  def blocked_by?(friend)
+    return Friend.where(user_blocked: true, user_id: friend.id, id_of_friend: self.id).any?
+  end
 
 end

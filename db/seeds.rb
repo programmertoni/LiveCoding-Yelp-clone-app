@@ -29,7 +29,7 @@ Category.create(title: 'Fnancal Services')
 Category.create(title: 'Travel')
 
 
-user  = User.create(full_name: 'Toni Cesarek',
+user  = User.create(full_name: 'User Toni',
                    password: 'password',
                    role: 'user')
 

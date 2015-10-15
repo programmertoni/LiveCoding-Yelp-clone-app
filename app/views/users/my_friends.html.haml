@@ -23,8 +23,9 @@
               = link_to '#' do
                 = fa_icon 'child', text: user.full_name
               %span(class='pull-right')
-                = link_to new_user_message_path(user), class: 'green smaller-icon' do
-                  =fa_icon 'envelope-o', text: 'send mail'
+                - unless current_user.blocked_by?(user)
+                  = link_to new_user_message_path(user), class: 'green smaller-icon' do
+                    =fa_icon 'envelope-o', text: 'send mail'
                 = link_to block_user_path(current_user, user), class: 'smaller-icon', method: :post do
                   =fa_icon 'ban', text: 'block'
       - elsif params[:friends] == 'pending'

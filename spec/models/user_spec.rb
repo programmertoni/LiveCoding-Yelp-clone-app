@@ -83,4 +83,31 @@ describe User do
     end
   end
 
+  describe '#blocked?(current_user)' do
+
+    let!(:user)         { Fabricate(:user) }
+    let!(:friend_1)     { Fabricate(:user) }
+    let!(:friend_2)     { Fabricate(:user) }
+    let!(:friendship_1) { Fabricate(:friend,
+                                    user_id: friend_1.id,
+                                    user_blocked: true,
+                                    id_of_friend: user.id,
+                                    a_friend: true) }
+
+    let!(:friendship_2) { Fabricate(:friend,
+                                    user_id: friend_2.id,
+                                    user_blocked: false,
+                                    id_of_friend: user.id,
+                                    a_friend: true) }
+
+    it 'returnes true if frend blocked user' do
+      expect(user.blocked_by?(friend_1)).to be true
+    end
+
+    it 'returnes false if friend did not bocked the user' do
+      expect(user.blocked_by?(friend_2)).to be false
+    end
+
+  end
+
 end
