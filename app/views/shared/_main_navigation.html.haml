@@ -16,9 +16,11 @@
             %li
               %a 
                 %span.glyphicon.glyphicon-user 
-                  %span 3
+                  %span
+                    = current_user.friends.count
                 %span.glyphicon.glyphicon-star
-                  %span 12
+                  %span
+                    = current_user.reviews.count
             %li
               = link_to 'About Me', reviews_user_path(current_user)
             %li

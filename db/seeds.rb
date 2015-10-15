@@ -1,10 +1,30 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+FIRST_SENTANCE = [
+  "Hello Friends.",
+  "Jo, jo it's ME again!",
+  "It is me again.",
+  "Want another review. Well here we go.",
+  "I just want to tell you more about this place."
+]
+
+SECOND_SENTANCE = [
+  "I had a blast last night.",
+  "The staff really deserve credit here.",
+  "Everything I order was delivered with care.",
+  "There are few places I could call home and this company deserves I could call home.",
+  "The owner of the company came to greet me and my family. I think this is really cool."
+]
+
+THIRD_SENTANCE = [
+  "Thanks for reading this review.",
+  "I will definitely visit this place again.",
+  "I would recommend this company to you if we were best friends.",
+  "Check this company. They will not let you down.",
+  "Well This is the end of my short review. Hope you liked it."
+]
+
+def build_sentance
+  "#{FIRST_SENTANCE.sample} #{SECOND_SENTANCE.sample} #{THIRD_SENTANCE.sample}"
+end
 
 100.times do
   User.create(full_name: Faker::Name.name,
@@ -58,7 +78,7 @@ end
 
 200.times do
   Review.create(stars: (1..5).to_a.sample,
-                content: Faker::Lorem.word,
+                content: build_sentance,
                 user_id: (1..20).to_a.sample,
                 company: ([owner, admin].sample).companies.sample)
 end
