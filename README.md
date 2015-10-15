@@ -5,13 +5,15 @@ real Yelp app. It was build for education purpose.
 
 ## Demo App
 
-You can play with the app on [Heroku Server](http://yelp-clone-app.herokuapp.com/)
+Give it a few [CLIKS](http://yelp-clone-app.herokuapp.com/)
 
 ## Getting Started
 
 :one: Look at the gems file for the Ruby version and the gem used in the app
 
 :two: Just bundle install and you should be good to go :collision:
+
+:three: Run "rake db:setup" or "rake db:seed" to populate database with some dummy text
 
 ## Contributing
 
