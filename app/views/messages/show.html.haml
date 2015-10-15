@@ -9,13 +9,13 @@
     %p
       = @message.content
     %br
-    = link_to new_user_message_path(@friend.id), class: 'btn btn-primary' do
+    = link_to new_user_message_path(@friend.id), class: 'btn btn-primary message-buttons' do
       =fa_icon 'share', text: 'reply'
     - if @message.important
-      = link_to unimportant_user_message_path(current_user.id, @message.id), class: 'btn btn-primary', method: :post do
+      = link_to unimportant_user_message_path(current_user.id, @message.id), class: 'btn btn-primary message-buttons', method: :post do
         = fa_icon 'tag', text: 'unimportant'
     - else
-      = link_to important_user_message_path(current_user.id, @message.id), class: 'btn btn-primary', method: :post do
+      = link_to important_user_message_path(current_user.id, @message.id), class: 'btn btn-primary message-buttons', method: :post do
         = fa_icon 'tag', text: 'important'
     = link_to user_message_path(current_user.id, @message.id, from_show_page: 'true'), class: 'btn btn-primary', method: :delete do
       =fa_icon 'trash-o', text: 'delete'
