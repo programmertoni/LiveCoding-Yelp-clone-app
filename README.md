@@ -3,6 +3,10 @@
 This app is build using Ruby on Rails framework. It is not meant to replace the 
 real Yelp app. It was build for education purpose. 
 
+## Demo App
+
+You can play with the app on [Heroku Server](http://yelp-clone-app.herokuapp.com/)
+
 ## Getting Started
 
 :one: Look at the gems file for the Ruby version and the gem used in the app
