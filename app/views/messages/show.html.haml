@@ -17,5 +17,5 @@
     - else
       = link_to important_user_message_path(current_user.id, @message.id), class: 'btn btn-primary message-buttons', method: :post do
         = fa_icon 'tag', text: 'important'
-    = link_to user_message_path(current_user.id, @message.id, from_show_page: 'true'), class: 'btn btn-primary', method: :delete do
+    = link_to user_message_path(current_user.id, @message.id, from_show_page: 'true'), class: 'btn btn-primary message-buttons', method: :delete do
       =fa_icon 'trash-o', text: 'delete'
