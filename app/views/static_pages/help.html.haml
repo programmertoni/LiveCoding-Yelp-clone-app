@@ -1,7 +1,7 @@
 .text-center
   %h1.large-heading Help
   %p This app is really easy to use if you know how the real Yelp app works.
-  %p If not you can watch quick video presentation on the video below.
+  %p If not you can watch quick video presentation below.
   %br
   .video-presentation
     %iframe{:allowfullscreen => "", :frameborder => "0", :height => "534", :src => "https://www.youtube.com/embed/o1zB4zvjSzM", :width => "950"}
@@ -10,6 +10,6 @@
   %p.text-center
     I also coded live for about and hour on 
     %span.cl-effect-12
-      %a(href='#')LiveCoding.tv
+      = link_to 'LiveCoding.tv', 'https://www.livecoding.tv/video/yelp-clone-part-01/', target: :blank
 %br
 %br
