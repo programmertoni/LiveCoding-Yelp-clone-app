@@ -124,11 +124,13 @@ describe CompaniesController do
                                     name: 'Zelot Factory',
                                     user_id: owner.id) }
     it 'assigns @company' do
+      session[:user_id] = owner.id
       get :show, user_id: owner.id, id: company.id
       expect(assigns[:company]).to eq(Company.find(company.id))
     end
 
     it 'assigns @reviews' do
+      session[:user_id] = owner.id
       get :show, user_id: owner.id, id: company.id
       expect(assigns[:reviews]).to eq([])
     end

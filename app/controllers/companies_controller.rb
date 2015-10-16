@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :require_owner_or_admin?, except: [:show, :search]
   before_action :require_same_user,       except: [:show, :search]
+  before_action :require_user,            only:   [:show]
 
   def index
     @user      = User.find(current_user.id)
