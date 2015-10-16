@@ -33,6 +33,7 @@ group :test do
   gem 'fabrication',       '2.14.1'
   gem 'capybara',          '2.5.0'
   gem 'launchy',           '2.4.3'
+  gem 'simplecov', require: false
 end
 
 group :development, :test do
