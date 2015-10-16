@@ -13,7 +13,7 @@ class City < ActiveRecord::Base
   private
 
   def address
-    "#{name}, {country}"
+    "#{name}, #{country}"
   end
 
 end
