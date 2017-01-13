@@ -22,4 +22,4 @@ It would be awesome if you could contribute to make this app better.
 ## License
 
 This app is released under the 
-[MIT License](http://www.opensource.org/licenses/MIT).
+[MIT License](http://www.opensource.org/licenses/MIT)!
